@@ -1,5 +1,5 @@
 cff-version: 1.2.0
-title: "Distance Map Auxiliary Loss for Brain Tumor Segmentation: A Fragment-Centric Analysis and the Saturation Ceiling of Post-hoc MoE Fusion"
+title: "Distance Map Auxiliary Loss for Brain Tumor Segmentation: A Fragment-Centric Analysis and the Saturation Ceiling of Post-hoc Connected-Component Consensus Filtering"
 message: "If you use this work, please cite it as below."
 type: software
 authors:
@@ -20,8 +20,9 @@ keywords:
   - MedNeXt
   - distance map
   - signed distance transform
-  - mixture of experts
-  - ensemble learning
+  - connected component consensus
+  - post-hoc filtering
+  - hard-label ensembling
   - medical imaging
   - deep learning
   - ceiling analysis
@@ -31,11 +32,13 @@ abstract: >-
   SDT task brings a modest but statistically robust Dice improvement (+0.63 to
   +0.96 percentage points per region, Wilcoxon p < 10^-6, n=240) while
   introducing a new failure mode — spurious isolated connected components
-  (fragments) most acute in NCR and ED. A parameter-free post-hoc Mixture-of-
-  Experts fusion that drops DistMap CCs without Baseline overlap reduces NCR
-  fragments by 81% (Wilcoxon p=7e-4) at no Dice cost. A 1196-patient 5-fold
-  ceiling analysis shows that this rule is already near-saturation: the oracle
-  per-class upper bound is only +0.005 Dice above the default, and no
+  (fragments) most acute in NCR and ED. A parameter-free post-hoc
+  connected-component consensus filter (CC-consensus) that drops DistMap CCs
+  without Baseline overlap reduces NCR fragments by 81% (Wilcoxon p=7e-4) at
+  no Dice cost. The rule is hard-label and parameter-free; it is NOT a
+  Mixture-of-Experts in the gating-network sense. A 1196-patient 5-fold
+  ceiling analysis shows that this filter is already near-saturation: the
+  oracle per-class upper bound is only +0.005 Dice above the default, and no
   classifier trained on 31 hand-crafted features beats the default in CV.
   Closing the gap requires voxel-level probabilistic voting or architectural
   diversity, motivating a training-time fragment-aware loss over further

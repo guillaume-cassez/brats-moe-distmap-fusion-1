@@ -1,9 +1,11 @@
 # brats-moe-distmap-fusion-1
 
 **Distance Map Auxiliary Loss for Brain Tumor Segmentation:
-A Fragment-Centric Analysis and the Saturation Ceiling of Post-hoc MoE Fusion**
+A Fragment-Centric Analysis and the Saturation Ceiling of Post-hoc Connected-Component Consensus Filtering**
 
 Code, data artefacts, and paper source for a BraTS 2023 GLI study.
+
+> *Note on naming.* Earlier drafts used "MoE fusion". This version drops that label : the rule is not a Mixture-of-Experts in the strict sense (no learned gating network, no soft routing). It is a **hard-label, post-hoc, connected-component-level consensus filter** — precisely described as **CC-consensus filter** throughout. The repository slug (`brats-moe-distmap-fusion-1`) is kept for URL / DOI stability.
 
 [![interactive viewer](https://img.shields.io/badge/🌐_interactive_viewer-guillaume--cassez.fr%2Fbrats-blue)](https://guillaume-cassez.fr/brats/)
 [![paper page](https://img.shields.io/badge/📄_paper_landing-guillaume--cassez.fr%2Fbrats%2Fpaper1-blue)](https://guillaume-cassez.fr/brats/paper1/)
@@ -18,11 +20,11 @@ Code, data artefacts, and paper source for a BraTS 2023 GLI study.
 
 2. The SDT loss introduces a new failure mode: **spurious isolated connected components ("fragments")** not present in the ground truth, most acute on NCR (necrotic core) and ED (edema).
 
-3. A **parameter-free Mixture-of-Experts (MoE) fusion rule** — start from DistMap, drop any connected component whose same-class mask has zero overlap with Baseline — **removes 81 % of NCR fragments** (Wilcoxon p = 7 × 10⁻⁴) at no Dice cost.
+3. A **parameter-free connected-component consensus filter (CC-consensus filter)** — start from DistMap, drop any connected component whose same-class mask has zero voxel overlap with Baseline — **removes 81 % of NCR fragments** (Wilcoxon p = 7 × 10⁻⁴) at no Dice cost.
 
-4. On 1196 patients (5-fold CV), the **oracle per-class selection upper-bound** is only **+0.005 Dice avg** above this default fusion rule. **No classifier** (RF / LR / GBM) trained on 31 hand-crafted features (GT morphology + inter-model agreement) **robustly beats the default in CV**. Closing the gap requires voxel-level probabilistic voting or architectural diversity.
+4. On 1196 patients (5-fold CV), the **oracle per-class selection upper-bound** is only **+0.005 Dice avg** above this default CC-consensus rule. **No classifier** (RF / LR / GBM) trained on 31 hand-crafted features (GT morphology + inter-model agreement) **robustly beats the default in CV**. Closing the gap requires voxel-level probabilistic voting or architectural diversity.
 
-→ The default MoE fusion is already near-optimal within the hard-label post-hoc paradigm. Further improvement should target **training-time fragment-aware losses** (Paper 2), not more post-hoc engineering.
+→ The default CC-consensus filter is already near-optimal within the hard-label post-hoc paradigm. Further improvement should target **training-time fragment-aware losses** (Paper 2), not more post-hoc engineering.
 
 ---
 
@@ -43,7 +45,7 @@ Six patients (C1–C6) are pinned at the top of the Patient dropdown. Each one i
 
 ---
 
-## Try the MoE fusion rule on your own predictions
+## Try the CC-consensus filter on your own predictions
 
 The rule is parameter-free (only 26-connectivity). Plug in your own two segmentation arrays (DistMap + Baseline, both label maps in `{0, 1, 2, 3}`):
 
@@ -53,10 +55,11 @@ from scipy import ndimage as ndi
 
 STRUCT_26 = ndi.generate_binary_structure(3, 3)
 
-def moe_fusion(distmap_seg, baseline_seg, classes=(1, 2, 3)):
-    """Start from DistMap, remove any CC of each class that has no
-    voxel overlap with Baseline same-class. Parameter-free."""
-    fused = distmap_seg.copy()
+def cc_consensus_filter(distmap_seg, baseline_seg, classes=(1, 2, 3)):
+    """Connected-component consensus filter.
+    Start from DistMap; for each class, drop any CC of DistMap whose same-class
+    mask has zero voxel overlap with Baseline. Parameter-free (26-connectivity)."""
+    filtered = distmap_seg.copy()
     for c in classes:
         d_mask = (distmap_seg == c); b_mask = (baseline_seg == c)
         if not d_mask.any(): continue
@@ -64,8 +67,8 @@ def moe_fusion(distmap_seg, baseline_seg, classes=(1, 2, 3)):
         for cc_id in range(1, n + 1):
             cc = (lab == cc_id)
             if not np.any(cc & b_mask):
-                fused[cc] = 0  # unconfirmed fragment
-    return fused
+                filtered[cc] = 0  # unconfirmed fragment
+    return filtered
 ```
 
 ---
@@ -130,14 +133,15 @@ Patient-level feature extraction (`extract_patient_features.py`, `extract_agreem
 ## Cite
 
 ```bibtex
-@article{cassez2026moefusion,
+@article{cassez2026ccconsensus,
   title   = {Distance Map Auxiliary Loss for Brain Tumor Segmentation:
              A Fragment-Centric Analysis and the Saturation Ceiling of
-             Post-hoc MoE Fusion},
+             Post-hoc Connected-Component Consensus Filtering},
   author  = {Cassez, Guillaume},
   journal = {arXiv preprint},
   year    = {2026},
-  url     = {https://guillaume-cassez.fr/brats/paper1/}
+  url     = {https://guillaume-cassez.fr/brats/paper1/},
+  doi     = {10.5281/zenodo.19695264}
 }
 ```
 
@@ -157,6 +161,8 @@ If this kind of work is what your team does, I'd love to chat — even just to e
 
 → [guillaumecassezwork@gmail.com](mailto:guillaumecassezwork@gmail.com)
 → [guillaume-cassez.fr](https://guillaume-cassez.fr)
+→ [Bluesky @guillaume-cassez.bsky.social](https://bsky.app/profile/guillaume-cassez.bsky.social)
+→ [ORCID 0009-0007-0987-3931](https://orcid.org/0009-0007-0987-3931)
 
 For technical discussion on this work specifically, please open a [GitHub issue](https://github.com/guillaume-cassez/brats-moe-distmap-fusion-1/issues) — it helps future readers.
 
