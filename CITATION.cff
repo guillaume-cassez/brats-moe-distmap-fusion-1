@@ -9,6 +9,7 @@ authors:
     website: "https://guillaume-cassez.fr"
 repository-code: "https://github.com/guillaume-cassez/brats-moe-distmap-fusion-1"
 url: "https://guillaume-cassez.fr/brats/paper1/"
+doi: 10.5281/zenodo.19695264
 license: MIT
 date-released: "2026-04-22"
 keywords:

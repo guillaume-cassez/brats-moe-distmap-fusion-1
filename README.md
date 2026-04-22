@@ -8,6 +8,7 @@ Code, data artefacts, and paper source for a BraTS 2023 GLI study.
 [![interactive viewer](https://img.shields.io/badge/🌐_interactive_viewer-guillaume--cassez.fr%2Fbrats-blue)](https://guillaume-cassez.fr/brats/)
 [![paper page](https://img.shields.io/badge/📄_paper_landing-guillaume--cassez.fr%2Fbrats%2Fpaper1-blue)](https://guillaume-cassez.fr/brats/paper1/)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+[![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19695264.svg)](https://doi.org/10.5281/zenodo.19695264)
 
 ---
 
