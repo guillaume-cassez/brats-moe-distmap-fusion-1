@@ -145,7 +145,7 @@ Patient-level feature extraction (`extract_patient_features.py`, `extract_agreem
 
 ## About the author
 
-I'm **Guillaume Cassez**, and I built this project in 2026 during a PhD candidacy in medical AI / computer vision. The full trajectory of the research — Paper 1 on post-hoc fusion (here) and Paper 2 on fragment-penalising training-time losses (in progress) — is motivated by a simple observation: our best tools report Dice scores, but clinicians care about whether the segmentation has artefacts that a radiologist would flag immediately.
+I'm **Guillaume Cassez** ([ORCID 0009-0007-0987-3931](https://orcid.org/0009-0007-0987-3931)), and I built this project in 2026 during a PhD candidacy in medical AI / computer vision. The full trajectory of the research — Paper 1 on post-hoc fusion (here) and Paper 2 on fragment-penalising training-time losses (in progress) — is motivated by a simple observation: our best tools report Dice scores, but clinicians care about whether the segmentation has artefacts that a radiologist would flag immediately.
 
 **I'm currently looking for opportunities**, ideally:
 

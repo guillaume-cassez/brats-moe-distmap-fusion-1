@@ -7,6 +7,7 @@ authors:
     family-names: Cassez
     email: guillaumecassezwork@gmail.com
     website: "https://guillaume-cassez.fr"
+    orcid: "https://orcid.org/0009-0007-0987-3931"
 repository-code: "https://github.com/guillaume-cassez/brats-moe-distmap-fusion-1"
 url: "https://guillaume-cassez.fr/brats/paper1/"
 doi: 10.5281/zenodo.19695264
