@@ -209,14 +209,16 @@ Feature importance (full-data RF, per-region top-3) supports the narrative: for 
 
 ## 6. Discussion
 
-### 6.1 Why DistMap creates fragments
+### 6.1 A working hypothesis on why DistMap creates fragments
 
-The SDT auxiliary task regresses, per voxel, a signed distance to the nearest boundary. It therefore rewards the network for producing sharp, metrically-accurate boundaries. We hypothesise that this same pressure sensitises the network to small **boundary-like signals** in healthy / tumor transition tissue (oedema–white matter interfaces, post-surgical cavities, heterogeneous NCR regions), producing high-SDT-response voxels that survive the argmax and appear as isolated blobs.
+The SDT auxiliary task regresses, per voxel, a signed distance to the nearest boundary. It therefore rewards the network for producing sharp, metrically-accurate boundaries. A plausible — **but unverified** — mechanism is that this same pressure sensitises the network to small boundary-like signals in healthy / tumor transition tissue (oedema–white matter interfaces, post-surgical cavities, heterogeneous NCR regions), producing high-SDT-response voxels that occasionally survive the argmax and appear as isolated blobs.
 
-Two lines of evidence are consistent with this hypothesis:
+Two observations are *consistent with* this hypothesis without directly proving it:
 
 * Fragment count increase is largest on NCR and ED (+55 %, +48 % respectively), regions with the longest and most irregular boundaries.
 * The fragment increase is far smaller for ET (+125 % in relative terms but only +1 fragment / patient in absolute terms), consistent with ET having sharper native contrast (gadolinium enhancement) and therefore less boundary ambiguity.
+
+**Caveat.** This mechanism is a working hypothesis rather than a demonstrated causal claim, and should be read as such. Direct verification would require at least one of : (i) an ablation of the auxiliary weight λ showing that fragment count scales monotonically with λ, (ii) visualisation of the predicted SDT response map at fragment locations to confirm they coincide with high-response near-boundary voxels, or (iii) replacing the MSE-SDT head with a distance-bin classification formulation to test whether the artefact is formulation-specific. We did not run these controls in the present work and defer them to future work — the primary contribution here is the characterisation and post-hoc mitigation of the artefact, not its mechanistic explanation.
 
 ### 6.2 Why the MoE fusion works
 
