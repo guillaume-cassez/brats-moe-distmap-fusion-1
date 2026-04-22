@@ -154,6 +154,8 @@ Visual inspection on 5 calibration patients (Section 6 discussion) revealed that
 
 Wilcoxon paired on fragment counts (Fusion < DistMap): **p = 7 × 10⁻⁴**. On Dice (Fusion > DistMap): p = 0.98, as expected — fragments of 5–10 voxels are invisible to a Dice metric when the tumor volume is 100 000+ voxels. This confirms that Dice-based evaluation systematically under-reports the fragment artefact.
 
+![Figure 1 — Mean fragment count per patient (connected components of size ≤ 50 voxels) for each region × variant. DistMap inflates the NCR fragment count by +55 % over Baseline; the MoE fusion rule brings it down to 35 — an 81 % reduction from DistMap (Wilcoxon p = 7 × 10⁻⁴).](figures/fragment_counts.png){width=90%}
+
 ### 5.3 Cross-validated fusion dynamics on 1196 patients
 
 Aggregating fold-out predictions from all 5 folds (n = 1196):
@@ -178,6 +180,8 @@ Per-patient case classification (B<F<D = fusion pulled baseline-side, etc.):
 
 The core observation: **fusion damages the patient-level score in 38.7 % of cases against only 13.1 % of synergy**. Per-region, Fusion wins (strictly) on only 2.7 % of patients for WT, **21.7 % for TC**, and 6.9 % for ET (with 38 % of ET ties driven by empty or trivial GT). The benefit of the post-hoc rule is therefore concentrated on TC; for WT and ET, Baseline-only or DistMap-only choices already dominate.
 
+![Figure 2 — 1196 validation patients plotted in the model-disagreement plane : x = Dice(DistMap) − Dice(Baseline) (positive means DistMap wins at the patient level), y = Dice(Fusion) − max(Dice(B), Dice(D)) (negative means Fusion is worse than either model alone). The *red* C5 cloud below y = 0 collects 38.7 % of patients where fusion damages the score; the *green* C6 points above y = 0 represent only 13.1 %. The visual asymmetry is the central empirical observation of this paper.](figures/case_scatter.png){width=95%}
+
 ### 5.4 Oracle cannot be reached by hand-crafted features
 
 The gap between fusion default and the per-class oracle (+0.005 Dice avg) is the maximum achievable gain of any per-region selection policy. We evaluate progressively richer policies:
@@ -198,6 +202,8 @@ The one-feature rule, which appears attractive on all-data fit (+0.00119 Dice av
 A RandomForest trained per region reaches 50 %, 43 %, and 51 % argmax accuracy (WT, TC, ET) versus 33 % random, confirming the features contain some signal — yet when the classifier is wrong, it chooses a strictly worse model, yielding a net negative outcome.
 
 Feature importance (full-data RF, per-region top-3) supports the narrative: for ET, `frac_removed_distmap_ET` (0.13) and `max_orphan_cc_ET` (0.09) — both inter-model agreement features — dominate. The signal is real; it is simply not strong enough to trust in CV.
+
+![Figure 3 — Top-8 feature importances of a RandomForest classifier trained to predict argmax(Baseline, DistMap, Fusion) for each region (WT / TC / ET). Bars in blue : morphology features from GT (20 of them). Bars in red : inter-model agreement features (11 of them). For ET specifically, the 3 top importances — `frac_removed_distmap_ET`, `max_orphan_cc_ET`, `n_no_overlap_distmap_ET` — are all agreement features, confirming that the decision "trust Fusion on ET or not" is driven by how much DistMap over-predicts relative to Baseline. For WT the signal is mixed; for TC the top feature is still an agreement feature (`frac_removed_distmap_NCR`).](figures/rf_importance.png){width=100%}
 
 ---
 
