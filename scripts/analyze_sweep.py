@@ -10,8 +10,9 @@ from pathlib import Path
 import numpy as np
 from collections import Counter
 
-SWEEP = Path("/tmp/sweep.csv")
-OUT = Path(__file__).parent / "analysis_out" / "adaptive_fusion_summary.txt"
+ROOT = Path(__file__).parent
+SWEEP = ROOT.parent / "data" / "sweep.csv"
+OUT = ROOT.parent / "analysis" / "adaptive_fusion_summary.txt"
 OUT.parent.mkdir(exist_ok=True)
 
 rows = list(csv.DictReader(SWEEP.open()))

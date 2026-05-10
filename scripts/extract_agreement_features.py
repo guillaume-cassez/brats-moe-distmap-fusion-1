@@ -1,6 +1,12 @@
 #!/usr/bin/env python3
 """Extract agreement features between baseline and distmap predictions.
 
+NOTE: This script requires the baseline/DistMap prediction NIfTIs (not shipped
+with the repo — too large). It is NOT runnable from the cloned repo alone —
+the output CSV (data/patient_agreement_features.csv) is pre-computed and
+shipped so downstream analysis scripts ARE runnable. Edit the input paths
+below to re-extract agreement features locally.
+
 Features (per patient, computed from preds only, no GT needed) :
   dice_B_D_WT, dice_B_D_TC, dice_B_D_ET     # Dice(baseline, distmap) per region
   vol_diff_B_D_ET, vol_diff_B_D_NCR         # abs(|B|-|D|) / (|B|+|D|)  (symmetric)

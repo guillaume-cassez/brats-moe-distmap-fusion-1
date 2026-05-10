@@ -13,7 +13,8 @@ from pathlib import Path
 import numpy as np
 from collections import Counter
 
-RANK = Path("/tmp/rankings.json")
+ROOT = Path(__file__).parent
+RANK = ROOT.parent / "data" / "rankings.json"
 REGIONS = ["WT", "TC", "ET"]
 MODELS = ["baseline", "distmap", "fusion"]
 

@@ -12,9 +12,10 @@ import numpy as np
 from sklearn.model_selection import KFold
 
 ROOT = Path(__file__).parent
-FEATS_MORPHO = ROOT / "cases_out" / "patient_features.csv"
-FEATS_AGREE = ROOT / "cases_out" / "patient_agreement_features.csv"
-RANK = Path("/tmp/rankings.json")
+DATA = ROOT.parent / "data"
+FEATS_MORPHO = DATA / "patient_features.csv"
+FEATS_AGREE = DATA / "patient_agreement_features.csv"
+RANK = DATA / "rankings.json"
 
 morpho = {r["patient_id"]: r for r in csv.DictReader(FEATS_MORPHO.open())}
 agree = {r["patient_id"]: r for r in csv.DictReader(FEATS_AGREE.open())}

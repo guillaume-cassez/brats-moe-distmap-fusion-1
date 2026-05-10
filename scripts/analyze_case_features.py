@@ -21,9 +21,11 @@ from collections import defaultdict
 import numpy as np
 from scipy.stats import mannwhitneyu
 
-FEATS_CSV = Path("/tmp/patient_features.csv")
-CASES_JSON = Path(__file__).parent / "cases_out" / "all_cases.json"
-OUT_DIR = Path(__file__).parent / "analysis_out"
+ROOT = Path(__file__).parent
+DATA = ROOT.parent / "data"
+FEATS_CSV = DATA / "patient_features.csv"
+CASES_JSON = DATA / "all_cases.json"
+OUT_DIR = ROOT.parent / "analysis"
 OUT_DIR.mkdir(exist_ok=True)
 
 # Load features

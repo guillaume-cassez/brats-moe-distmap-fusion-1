@@ -8,9 +8,9 @@ The companion 3D viewer is **hosted on Cloudflare Pages** and embedded directly 
 - **Standalone viewer** : [guillaume-cassez.fr/brats/](https://guillaume-cassez.fr/brats/) — full-screen, all 1196 patients, all four segmentations (GT / Baseline / DistMap / Fusion).
 - **Per-patient ranking table** : [guillaume-cassez.fr/brats/ranking/](https://guillaume-cassez.fr/brats/ranking/) — sort and filter the 1196 patients by Dice and HD95 of each model.
 
-## The six thesis-demo patients
+## The six demo patients (Research Report 1)
 
-Six patients are pinned at the top of the Patient dropdown (optgroup "★ Démo thèse" / "★ Thesis demo"). Each one illustrates one of the six model-ordering cases C1–C6 discussed in the paper:
+Six patients are pinned at the top of the Patient dropdown (optgroup "★ Démo rapport de recherche 1" / "★ Research report 1 demo"). Each one illustrates one of the six model-ordering cases C1–C6 discussed in the report :
 
 | Pin | Patient | Case description |
 |---|---|---|

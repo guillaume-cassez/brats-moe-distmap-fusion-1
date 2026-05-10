@@ -10,6 +10,10 @@ Adaptive rule:
 
 Output: CSV per (threshold, patient) with Dice WT/TC/ET avg + case classification
 relative to threshold-specific fusion.
+
+NOTE: Requires tower-local GT + predictions (not redistributed). The analysis
+output is pre-computed and shipped as data/sweep.csv — use analyze_sweep.py to
+reproduce the summary stats from the shipped CSV.
 """
 import csv
 import json

@@ -11,19 +11,18 @@ Cases (B=baseline, D=distmap, F=fusion, metric = dice_avg over WT/TC/ET):
   C6 : F > B AND F > D    (fusion is best)
 
 Output :
-  - src/app/pinnedPatients.generated.json : champions (best 1 per case)
-  - scripts/cases_out/C<n>.csv            : all patients of each case, ranked
-  - scripts/cases_out/all_cases.json      : machine-readable
+  - data/C<n>_<name>.csv  : all patients of each case, ranked
+  - data/all_cases.json   : machine-readable
 """
 import json
 import csv
 from pathlib import Path
 
-RANK = Path("/tmp/rankings.json")
 ROOT = Path(__file__).parent
-OUT_DIR = ROOT / "cases_out"
+DATA = ROOT.parent / "data"
+RANK = DATA / "rankings.json"
+OUT_DIR = DATA
 OUT_DIR.mkdir(exist_ok=True)
-CHAMP = ROOT.parent / "src" / "app" / "pinnedPatients.generated.json"
 
 data = json.loads(RANK.read_text())
 rows = data["rows"]
@@ -75,6 +74,7 @@ for name, _, _ in CASES:
         if c["pid"] not in used:
             picked[name] = c; used.add(c["pid"]); break
 
+CHAMP = DATA / "champions.json"
 CHAMP.write_text(json.dumps({
     "generated_at": data.get("generated_at"),
     "source": "rankings.json",

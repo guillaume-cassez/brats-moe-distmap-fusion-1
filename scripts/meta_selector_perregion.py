@@ -17,10 +17,11 @@ from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import KFold
 
 ROOT = Path(__file__).parent
-FEATS_MORPHO = ROOT / "cases_out" / "patient_features.csv"
-FEATS_AGREE = ROOT / "cases_out" / "patient_agreement_features.csv"
-RANK = Path("/tmp/rankings.json")
-OUT = ROOT / "analysis_out" / "meta_selector_perregion.txt"
+DATA = ROOT.parent / "data"
+FEATS_MORPHO = DATA / "patient_features.csv"
+FEATS_AGREE = DATA / "patient_agreement_features.csv"
+RANK = DATA / "rankings.json"
+OUT = ROOT.parent / "analysis" / "meta_selector_perregion.txt"
 
 # ---- Load features ----
 morpho = {r["patient_id"]: r for r in csv.DictReader(FEATS_MORPHO.open())}

@@ -36,3 +36,12 @@ token*
 /tmp/
 build/
 dist/
+
+# Word formats : PDF is the archival source of truth (decision 2026-05-10).
+# DOCX kept locally for editing convenience but not redistributed.
+*.docx
+
+# Intermediate / temporary working dirs (Playwright screenshots, scratch downloads)
+downloads/
+figures/captures_24/
+figures/viewer_captures/

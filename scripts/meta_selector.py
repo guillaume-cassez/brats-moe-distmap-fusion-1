@@ -21,9 +21,11 @@ from sklearn.linear_model import LogisticRegression
 from sklearn.preprocessing import StandardScaler
 from sklearn.model_selection import StratifiedKFold
 
-FEATS = Path(__file__).parent / "cases_out" / "patient_features.csv"
-RANK = Path("/tmp/rankings.json")
-OUT = Path(__file__).parent / "analysis_out" / "meta_selector.txt"
+ROOT = Path(__file__).parent
+DATA = ROOT.parent / "data"
+FEATS = DATA / "patient_features.csv"
+RANK = DATA / "rankings.json"
+OUT = ROOT.parent / "analysis" / "meta_selector.txt"
 
 # Load features
 feat_rows = list(csv.DictReader(FEATS.open()))

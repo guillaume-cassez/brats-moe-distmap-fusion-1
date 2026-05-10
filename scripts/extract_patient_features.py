@@ -2,8 +2,16 @@
 """Extract 20 morphological/topological features per patient to discriminate
 the 6 model-ordering cases (C1-C6) defined in the viewer analysis.
 
-Input  : /tmp/rankings.json (classifier list), tower-local NIfTIs.
-Output : /home/ser/Bureau/BRATS/outputs/patient_features.csv
+NOTE: This script requires tower-local raw NIfTI data (BraTS 2023 GLI cannot
+be redistributed under the challenge licence) and the baseline/DistMap
+prediction NIfTIs. It is NOT runnable from the cloned repo alone — the output
+CSV (data/patient_features.csv) is pre-computed and shipped in the repo so
+the downstream analysis scripts (meta_selector*.py, simple_*.py,
+analyze_case_features.py, oracle_per_class.py) ARE runnable. Edit the input
+paths below to re-extract features locally.
+
+Input  : data/rankings.json (classifier list), tower-local NIfTIs.
+Output : data/patient_features.csv
 
 Features (per patient):
   vol_WT, vol_TC, vol_ET, ratio_ET_WT,
