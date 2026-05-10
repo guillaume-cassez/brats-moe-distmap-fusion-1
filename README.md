@@ -9,8 +9,10 @@ Code, data artefacts, and paper source for a BraTS 2023 GLI study.
 
 > *Note on naming.* Earlier drafts used "MoE fusion". This version drops that label : the rule is not a Mixture-of-Experts in the strict sense (no learned gating network, no soft routing). It is a **hard-label, post-hoc, connected-component-level consensus filter** — precisely described as **CC-consensus filter** throughout. The repository slug (`brats-moe-distmap-fusion-1`) is kept for URL / DOI stability.
 
-[![interactive viewer](https://img.shields.io/badge/🌐_interactive_viewer-guillaume--cassez.fr%2Fbrats-blue)](https://guillaume-cassez.fr/brats/)
-[![paper page](https://img.shields.io/badge/📄_paper_landing-guillaume--cassez.fr%2Fbrats%2Fpaper1-blue)](https://guillaume-cassez.fr/brats/paper1/)
+[![interactive viewer](https://img.shields.io/badge/🌐_interactive_viewer-guillaume--cassez.fr-blue)](https://guillaume-cassez.fr/imagerie-medicale/viewer/)
+[![paper page](https://img.shields.io/badge/📄_paper_landing-guillaume--cassez.fr-blue)](https://guillaume-cassez.fr/imagerie-medicale/)
+[![HF Baseline](https://img.shields.io/badge/🤗-MedNeXt%20Baseline-yellow)](https://huggingface.co/GuillaumeCassez/mednext-baseline-brats2023gli)
+[![HF DistMap](https://img.shields.io/badge/🤗-MedNeXt%20DistMap-yellow)](https://huggingface.co/GuillaumeCassez/mednext-distmap-brats2023gli)
 [![license](https://img.shields.io/badge/license-MIT-green)](LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19695263.svg)](https://doi.org/10.5281/zenodo.19695263)
 

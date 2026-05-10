@@ -380,7 +380,14 @@ Exécuter ces trois contrôles ferait passer §6.1 d'« hypothèse de travail »
 
 ## Annexe D — Temps d'exécution et reproductibilité
 
-Tout le code, les 20 + 11 features pré-extraites, les scores par modèle et par patient, les CSV d'oracles / classification de cas, les résultats du balayage de seuil et les sorties des meta-selectors sont disponibles dans le dépôt compagnon. L'extraction des 31 features par patient sur les 1196 prédictions tourne en **~10 min** sur 14 threads P-cores (`taskset -c 0-13`) d'un i7-14700K ; le balayage complet de meta-classifieurs (4 familles × 5 folds × 31 dim) tourne en ~2 min sur le même hôte. **Temps d'entraînement par fold : ~13 h 30 pour 300 epochs** sur une unique RTX PRO 6000 Blackwell (96 Go), variantes Baseline et DistMap à durée équivalente (la tête de régression SDT auxiliaire ajoute < 1 % de surcoût GPU sur 300 ep).
+Tout le code, les 20 + 11 features pré-extraites, les scores par modèle et par patient, les CSV d'oracles / classification de cas, les résultats du balayage de seuil et les sorties des meta-selectors sont disponibles dans le dépôt compagnon [github.com/guillaume-cassez/brats-moe-distmap-fusion-1](https://github.com/guillaume-cassez/brats-moe-distmap-fusion-1) et archivés sur Zenodo (DOI conceptuel [10.5281/zenodo.19695263](https://doi.org/10.5281/zenodo.19695263)).
+
+Les checkpoints des modèles entraînés (5 folds de cross-validation pour chaque variante, poids au format `safetensors`, sans état d'optimiseur) sont publiés sur Hugging Face Hub :
+
+- Baseline : [huggingface.co/GuillaumeCassez/mednext-baseline-brats2023gli](https://huggingface.co/GuillaumeCassez/mednext-baseline-brats2023gli)
+- DistMap (SDT auxiliaire) : [huggingface.co/GuillaumeCassez/mednext-distmap-brats2023gli](https://huggingface.co/GuillaumeCassez/mednext-distmap-brats2023gli)
+
+L'extraction des 31 features par patient sur les 1196 prédictions tourne en **~10 min** sur 14 threads P-cores (`taskset -c 0-13`) d'un i7-14700K ; le balayage complet de meta-classifieurs (4 familles × 5 folds × 31 dim) tourne en ~2 min sur le même hôte. **Temps d'entraînement par fold : ~13 h 30 pour 300 epochs** sur une unique RTX PRO 6000 Blackwell (96 Go), variantes Baseline et DistMap à durée équivalente (la tête de régression SDT auxiliaire ajoute < 1 % de surcoût GPU sur 300 ep).
 
 ---
 
