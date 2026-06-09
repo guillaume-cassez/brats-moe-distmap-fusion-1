@@ -37,7 +37,7 @@ abstract: >-
   that drops DistMap CCs without Baseline overlap reduces NCR fragments by 66%
   on 1196 patients (Wilcoxon p < 10^-189, topological: CC count - 1 per class)
   at no Dice cost, and significantly improves boundary quality: HD95 drops on
-  NCR (4.86 → 4.48 mm, p=5.7e-14) and WT (3.86 → 3.76 mm, p=2.7e-4). The rule
+  NCR (4.86 → 4.48 mm, p=5.7e-14). The rule
   is hard-label and parameter-free;
   it is NOT a Mixture-of-Experts in the gating-network sense. A 1196-patient
   5-fold ceiling analysis shows this filter is already near-saturation: the

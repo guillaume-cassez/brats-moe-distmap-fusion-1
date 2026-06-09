@@ -12,7 +12,7 @@ Independent research · [ORCID 0009-0007-0987-3931](https://orcid.org/0009-0007-
 
 This work studies the addition of an auxiliary distance-map loss (SDT — Signed Distance Transform) on top of a MedNeXt-B / nnU-Net v2 pipeline for 3D brain tumor segmentation on BraTS 2023 GLI. At convergence on 1196 patients in 5-fold cross-validation, the SDT task **does not significantly improve** Dice (Δ Dice avg = +0.09 pp, Wilcoxon p > 0.25 per region) — a result that opens the analysis rather than closing it.
 
-DistMap introduces a new failure mode, so far unreported in the BraTS literature: **spurious isolated connected components** ("fragments") absent from the ground truth, most acute on NCR (×1.5 vs Baseline) and ED (×1.2). We propose a parameter-free post-hoc **connected-component consensus filter** (CC-consensus), which removes any DistMap component without same-class Baseline overlap. On 1196 patients in 5-fold CV, the filter eliminates **66 % of NCR fragments** (Wilcoxon p < 10⁻¹⁸⁹, topological definition: CC − 1 per class) at no Dice cost, and **significantly improves NCR HD95** (4.86 → 4.48 mm, p = 5.7 × 10⁻¹⁴) as well as WT HD95 (3.86 → 3.76 mm, p = 2.7 × 10⁻⁴). Clinically, NCR is precisely the region where spurious fragments may mislead a radiotherapist on the extent of tumor necrosis; the boundary-quality gain measured here is hidden by Dice but visible through HD95.
+DistMap introduces a new failure mode, so far unreported in the BraTS literature: **spurious isolated connected components** ("fragments") absent from the ground truth, most acute on NCR (×1.5 vs Baseline) and ED (×1.2). We propose a parameter-free post-hoc **connected-component consensus filter** (CC-consensus), which removes any DistMap component without same-class Baseline overlap. On 1196 patients in 5-fold CV, the filter eliminates **66 % of NCR fragments** (Wilcoxon p < 10⁻¹⁸⁹, topological definition: CC − 1 per class) at no Dice cost, and **significantly improves NCR HD95** (4.86 → 4.48 mm, p = 5.7 × 10⁻¹⁴). Clinically, NCR is precisely the region where spurious fragments may mislead a radiotherapist on the extent of tumor necrosis; the boundary-quality gain measured here is hidden by Dice but visible through HD95.
 
 A hard-label ceiling study shows this rule already sits near saturation: the per-class oracle is only +0.005 Dice avg above the default, and no 31-feature meta-selector (4 classifier families) robustly beats CC-consensus in 5-fold CV (Appendix B). Closing this gap requires voxel-level probabilistic voting or architectural diversity, motivating a Paper 2 toward a training-time fragment-aware loss rather than further post-hoc engineering.
 
@@ -63,11 +63,20 @@ Neither Huang et al. nor SiNGR report or analyse the fragment artefact described
 
 ### 3.2 Variant naming
 
-| Variant | Trainer | Auxiliary? |
-|---|---|---|
-| **Baseline** | `nnUNetTrainerMedNeXtBaseline` | no SDT |
-| **DistMap** | `nnUNetTrainerMedNeXtDistMap` | SDT, λ = 1 |
-| **CC-Consensus** | post-hoc rule (§3.3) on DistMap + Baseline | post-hoc |
+```{=latex}
+\begin{center}
+\setlength{\tabcolsep}{5pt}
+\begin{tabular}{lll}
+\toprule
+Variant & Trainer & Auxiliary? \\
+\midrule
+\textbf{Baseline} & \texttt{nnUNetTrainerMedNeXtBaseline} & no SDT \\
+\textbf{DistMap} & \texttt{nnUNetTrainerMedNeXtDistMap} & SDT, λ = 1 \\
+\textbf{CC-Consensus} & post-hoc rule (§3.3) on DistMap + Baseline & post-hoc \\
+\bottomrule
+\end{tabular}
+\end{center}
+```
 
 ### 3.3 CC-consensus filtering rule[^moe]
 
@@ -117,6 +126,8 @@ BraTS 2023 GLI (1251 patients, 4 modalities each). Pre-processing via nnU-Net v2
 ### 4.2 Metrics
 
 **Dice** per region (WT, TC, ED, ET) with the standard nnU-Net / MONAI convention *Dice = 1 if GT and prediction are both empty*. See §5.5 for caveats when comparing to BraTS challenge leaderboards.
+
+**Official BraTS-2023 lesion-wise metrics.** Because the challenge ranks on *lesion-wise* Dice and *lesion-wise* HD95 — scored per connected component, with false-positive and missed lesions penalised (GLI parameters: dilation 3, lesion-volume threshold 50 voxels, HD95 penalty 374 mm) — we additionally evaluate all three predictions under the official reference implementation [Moawad 2023; Saluja]; results in §5.3. These complement the Dice (overlap), fragment count (topology) and per-class HD95 (boundary) above with the field-standard component-level metric on which the leaderboard is built.
 
 **Fragment count (topological definition).** A **fragment** is a connected component (26-connectivity) of a given class that is **not the largest** component of its class — i.e. a CC topologically disconnected from the main tumor body. Per class $c$ on a prediction $P$, the fragment count is:
 $$\mathrm{fragments}(P, c) = \max(0, \; \mathrm{nb\_CC}(P == c, \text{26-conn}) - 1)$$
@@ -201,6 +212,8 @@ This effect **is invisible on Dice** (§5.3: mean Dice B / D / F = 0.9078 / 0.90
 
 ![Figure 7 — Case **C6** (patient `BraTS-GLI-00540-000`): clean synergy. Both Baseline (0.785) and DistMap (0.795) are competent but neither is perfect. **CC-Consensus combines their strengths** to reach 0.869 — strictly above both parents. This is the target behaviour on 157/1196 patients (13.1 %) where the filter improves beyond its sources.](figures/patient_C6_00540-000_4models.png){width=100%}
 
+\clearpage
+
 ### 5.3 CC-consensus improves NCR HD95 at no Dice cost
 
 Aggregating fold-out predictions from all 5 folds (n = 1196):
@@ -227,21 +240,21 @@ The CC-consensus filter damages the patient-level score in 38.7 % of cases again
 
 **Boundary quality (HD95).** Complementing the Dice analysis, 95th-percentile Hausdorff distances on the nested BraTS regions (WT/TC/ET) **and** on the individual classes (NCR, ED) where fragments live (n varies per row depending on finite-HD95 patients for that class):
 
-| Region / class | Composition | Baseline | DistMap | CC-Consensus | Δ CC-Cons vs DistMap |
-|---|---|---|---|---|---|
-| WT | {1, 2, 3} | 3.91 mm | 3.86 mm | **3.76 mm** | **−0.10 mm, p = 2.7 × 10⁻⁴** |
-| TC | {1, 3} | 3.08 mm | 2.79 mm | 2.88 mm | +0.09 mm, n.s. |
-| ET | {3} | 2.62 mm | 2.59 mm | 2.70 mm | +0.11 mm, n.s. |
+| Region | Comp. | Baseline | DistMap | CC-Cons | Δ CC-Cons vs DistMap |
+|:----|:----|:------|:------|:------|:------------------------|
+| WT | {1, 2, 3} | 3.99 mm | 3.99 mm | 4.03 mm | +0.05 mm, n.s. |
+| TC | {1, 3} | 3.14 mm | 2.89 mm | 2.96 mm | +0.07 mm, n.s. |
+| ET | {3} | 2.64 mm | 2.59 mm | 2.68 mm | +0.09 mm, n.s. |
 | **NCR** | {1} | 4.89 mm | 4.86 mm | **4.48 mm** | **−0.38 mm, p = 5.7 × 10⁻¹⁴** |
 | ED | {2} | 4.25 mm | 4.33 mm | 4.21 mm | −0.12 mm, n.s. (p = 0.82) |
 
-Paired signed-rank Wilcoxon, one-sided hypothesis HD95(CC-Consensus) < HD95(DistMap). n = 1160 for WT/TC/ET (restricted to patients with finite HD95 on all 3 nested regions), 1153 for NCR, 1193 for ED.
+Paired signed-rank Wilcoxon, one-sided hypothesis HD95(CC-Consensus) < HD95(DistMap). n = 1160 for WT/TC/ET (restricted to patients with finite HD95 on all 3 nested regions), 1153 for NCR, 1193 for ED. All HD95 use the standard `medpy` implementation (`medpy.metric.binary.hd95`), as for every HD95 reported in this work.
 
-**The dominant signal is on NCR**: CC-Consensus reduces NCR HD95 by 0.38 mm (p = 5.7 × 10⁻¹⁴) — direct quantitative confirmation that fragment deletion improves boundary quality on the class where they proliferate (NCR: ×1.5 more DistMap fragments than Baseline, cf. §5.2). The WT signal (−0.10 mm, p = 2.7 × 10⁻⁴) is the echo of this: NCR ⊂ WT, so NCR fragments contribute to WT boundary error. On ED, the fragment reduction (−61 %) does not translate into a statistically significant HD95 gain — oedema has intrinsic boundary variability that dominates the outliers introduced by fragments. On TC and ET (class 3), HD95 are preserved.
+**The signal is on NCR**: CC-Consensus reduces NCR HD95 by 0.38 mm (p = 5.7 × 10⁻¹⁴) — direct quantitative confirmation that fragment deletion improves boundary quality on the class where they proliferate (NCR: ×1.5 more DistMap fragments than Baseline, cf. §5.2). The gain does **not** propagate to the nested-region metrics: WT, TC and ET HD95 are unchanged (all n.s.), because the 95th-percentile distance on the large nested regions is dominated by the main tumor body and barely moves when small NCR fragments are removed. On ED, the fragment reduction (−61 %) likewise does not translate into a significant HD95 gain — oedema has intrinsic boundary variability that dominates the outliers introduced by fragments.
 
-CC-consensus thus delivers a quantitatively measurable gain on NCR HD95 and WT HD95, where Dice remains insensitive. Clinically, NCR is precisely the region where spurious fragments may mislead a radiotherapist on the extent of tumor necrosis.
+CC-consensus thus delivers a quantitatively measurable gain on **NCR HD95** specifically — the per-class metric on the region where the fragments proliferate — where Dice remains insensitive. Clinically, NCR is precisely the region where spurious fragments may mislead a radiotherapist on the extent of tumor necrosis.
 
-\clearpage
+**Official BraTS-2023 lesion-wise metric.** The fragment count (§5.2) and the per-class HD95 are our own diagnostics; the challenge ranks on *lesion-wise* metrics, which penalise spurious and missed components directly [Moawad 2023; Saluja]. Under the official implementation (1196-patient 5-fold CV), the CC-consensus is the **first configuration here to improve over Baseline on the challenge's own ranking metric**: lesion-wise HD95 **−9.49 mm** ($r = +0.42$, $p = 5.7 \times 10^{-26}$) and lesion-wise Dice **+0.024** ($r = +0.27$, $p = 4.5 \times 10^{-16}$), all surviving a Benjamini–Hochberg FDR control over the 216-test grid. The mechanism is that of §5.2 — each spurious component costs 374 mm — at negligible recall cost: versus DistMap, region sensitivity is essentially unchanged ($-0.0009$) while false-positive lesions are halved (0.44 → 0.23 per case). This is the field-standard confirmation that the fragment artefact, invisible to Dice, is a real lesion-detection problem the post-hoc filter measurably corrects.
 
 ![Figure 8 — 1196 validation patients plotted in the model-disagreement plane: x = Dice(DistMap) − Dice(Baseline) (positive means DistMap wins at the patient level), y = Dice(CC-Cons.) − max(Dice(B), Dice(D)) (negative means the CC-consensus filter is worse than either model alone). The *red* C5 cloud below y = 0 collects 38.7 % of patients where the filter damages the score; the *green* C6 points above y = 0 represent only 13.1 %. This visual asymmetry is the central empirical observation of the paper.](figures/case_scatter.png){width=100%}
 
@@ -253,7 +266,7 @@ The full detail — table of the 7 evaluated policies, RF importances per region
 
 ### 5.5 Position relative to BraTS 2023 GLI winners
 
-CC-consensus reaches Dice avg = 0.909 (WT 0.935, TC 0.919, ET 0.873) on 1196-patient 5-fold CV with a single-model setup (no multi-fold ensemble, no TTA, single architecture). This is within one percentage point of the published BraTS 2023 GLI winner range on private test set (0.87–0.89 Dice avg; Ferreira *et al.* 2024). Two caveats apply to the direct comparison: (i) different evaluation set (5-fold CV on train + val pool vs private test set, typical 1–2 pp gap to the disadvantage of the test set); (ii) the Dice = 1 on empty-region convention (nnU-Net / MONAI) inflates ET by ~0.003 relative to the lesion-wise convention used by the challenge (32/1196 patients with empty ET in GT).
+CC-consensus reaches Dice avg = 0.909 (WT 0.935, TC 0.919, ET 0.873) on 1196-patient 5-fold CV with a single-model setup (no multi-fold ensemble, no TTA, single architecture). On the region-wise Dice convention this is close to the published BraTS 2023 GLI winner range on private test set (0.87–0.89 Dice avg; Ferreira *et al.* 2024) — but the two numbers are **not directly comparable**: the leaderboard ranks on the *lesion-wise* metric (§4.2, §5.3), not region-wise Dice, and on a held-out private test set rather than a 5-fold CV of the training pool. Two caveats apply to the direct comparison: (i) different evaluation set (5-fold CV on train + val pool vs private test set, typical 1–2 pp gap to the disadvantage of the test set); (ii) the Dice = 1 on empty-region convention (nnU-Net / MONAI) inflates ET by ~0.003 relative to the lesion-wise convention used by the challenge (32/1196 patients with empty ET in GT).
 
 We do not claim a new state-of-the-art; the CC-consensus filter is **orthogonal to ensembling** — fragment reduction is a gain that stacks with classical multi-fold / TTA tricks without duplicating them.
 
@@ -287,6 +300,7 @@ Closing the +0.005 Dice gap almost certainly requires one of:
 ### 6.4 Limitations
 
 * **Single backbone.** All experiments use MedNeXt-B; generalisation to Swin-UNETR / nnU-Net vanilla / Restormer would strengthen the conclusion.
+* **Single training seed.** Each variant is trained once (seed 42) per fold; the reported effects are within-CV but not yet averaged over training seeds. A multi-seed replication on fold 0 is in progress to bound the residual training stochasticity.
 * **No probabilistic fusion baseline.** Only hard-label filtering is reported because softmax outputs were not persisted at inference time. The ceiling analysis explicitly addresses this gap for the hard-label setting.
 * **Single-model-per-patient setup.** The CC-consensus filter reaches Dice avg 0.909 on 1196-patient 5-fold CV without multi-fold ensembling, TTA, or multi-architecture voting. Adding these standard tricks would likely push the score into, or above, the BraTS 2023 GLI winner range, but this would be a parallel-compute contribution orthogonal to the fragment-characterisation question this paper addresses.
 * **Dice convention slightly inflates ET.** Empty-GT ET patients (2.7 % of BraTS 2023 GLI, non-enhancing cases, 32/1196 verified) are scored Dice = 1.0 under the nnU-Net / MONAI convention, which slightly inflates the ET regional mean (−0.003 only under the lesion-wise convention). The relative comparisons between Baseline, DistMap and CC-Consensus are not affected (all three use the same convention), but absolute ET Dice is not directly comparable to challenge leaderboards using the lesion-wise convention (see §5.5).
@@ -297,7 +311,7 @@ Closing the +0.005 Dice gap almost certainly requires one of:
 
 ## 7. Conclusion
 
-On MedNeXt-B / nnU-Net v2, the auxiliary SDT loss yields no significant Dice gain at convergence (Δ Dice avg = +0.09 pp, Wilcoxon p > 0.25 per region, 5-fold CV 1196 patients) but changes the topology of the predictions by introducing a fragment bias that the Dice metric fails to report. A parameter-free connected-component consensus filter that vetoes DistMap CCs without Baseline overlap removes 66 % of NCR fragments on 1196 patients (p < 10⁻¹⁸⁹) at no Dice cost, and **significantly improves NCR HD95** (4.86 → 4.48 mm, p = 5.7 × 10⁻¹⁴) as well as WT HD95 (3.86 → 3.76 mm, p = 2.7 × 10⁻⁴) — a boundary-quality gain hidden by Dice, clinically relevant on tumor necrosis.
+On MedNeXt-B / nnU-Net v2, the auxiliary SDT loss yields no significant Dice gain at convergence (Δ Dice avg = +0.09 pp, Wilcoxon p > 0.25 per region, 5-fold CV 1196 patients) but changes the topology of the predictions by introducing a fragment bias that the Dice metric fails to report. A parameter-free connected-component consensus filter that vetoes DistMap CCs without Baseline overlap removes 66 % of NCR fragments on 1196 patients (p < 10⁻¹⁸⁹) at no Dice cost, and **significantly improves NCR HD95** (4.86 → 4.48 mm, p = 5.7 × 10⁻¹⁴) — a boundary-quality gain hidden by Dice, clinically relevant on tumor necrosis.
 
 On 1196 patients in 5-fold CV, this rule is shown to be already near the saturation ceiling of any post-hoc hard-label selection policy: the per-class oracle is +0.005 Dice avg above the default, and no 31-feature meta-selector (4 classifier families) robustly beats this default in CV. Closing this gap motivates **training-time fragment-aware losses** (Paper 2) rather than further post-hoc engineering.
 
@@ -398,8 +412,9 @@ Six patients are highlighted to span the six model-ordering cases, used both for
 ```{=latex}
 \begin{center}
 \renewcommand{\arraystretch}{1.3}
+\setlength{\tabcolsep}{4pt}
 \small
-\begin{tabular}{|p{3.5cm}|c|c|c|c|c|p{5.6cm}|}
+\begin{tabularx}{\textwidth}{|p{3.5cm}|c|c|c|c|c|X|}
 \hline
 \textbf{Tag} & \textbf{Patient} & \textbf{Fold} & \textbf{B} & \textbf{D} & \textbf{F} & \textbf{Take-away} \\
 \hline
@@ -415,7 +430,7 @@ C5 (filter worst) & 01530-000 & 1 & 0.241 & 0.541 & 0.169 & Filter deletes a leg
 \hline
 C6 (filter best) & 00540-000 & 1 & 0.785 & 0.795 & 0.869 & Clean synergy \\
 \hline
-\end{tabular}
+\end{tabularx}
 \end{center}
 ```
 
@@ -434,3 +449,5 @@ C6 (filter best) & 00540-000 & 1 & 0.785 & 0.795 & 0.869 & Clean synergy \\
 * Liu S., Johns E., Davison A. J. (2019). *End-to-end multi-task learning with attention* (DWA — Dynamic Weight Average). **CVPR 2019**, 1871–1880. DOI: 10.1109/CVPR.2019.00197.
 * Baid U., Ghodasara S., Mohan S., Bilello M., Calabrese E., Colak E., *et al.* (2021). *The RSNA-ASNR-MICCAI BraTS 2021 benchmark on brain tumor segmentation and radiogenomic classification*. **arXiv:2107.02314**.
 * Menze B. H., Jakab A., Bauer S., *et al.* (2015). *The multimodal brain tumor image segmentation benchmark (BRATS)*. **IEEE TMI** 34(10), 1993–2024. DOI: 10.1109/TMI.2014.2377694.
+* Moawad A. W., Janas A., Baid U., Ramakrishnan D., Saluja R., *et al.* (2023). *The Brain Tumor Segmentation (BraTS-METS) Challenge 2023: Brain Metastasis Segmentation on Pre-treatment MRI*. **arXiv:2306.00838** (defines the lesion-wise Dice / HD95 metrics).
+* Saluja R., *et al.* (2023). *Official BraTS-2023 segmentation performance metrics* (lesion-wise reference implementation). GitHub: github.com/rachitsaluja/BraTS-2023-Metrics.
