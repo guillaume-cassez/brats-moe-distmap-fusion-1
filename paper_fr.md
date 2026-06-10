@@ -147,10 +147,10 @@ Sur les 1196 patients agrégés hors-fold de la CV 5-fold (schedule 300 epochs p
 
 | Région | Baseline | DistMap | ΔDice | p-value | Améliorés / dégradés / égaux |
 |---|---|---|---|---|---|
-| WT | 0,9354 | 0,9360 | +0,006 pp | 0,72 | 577 / 618 / 1 |
-| TC | 0,9185 | 0,9180 | −0,005 pp | 0,27 | 595 / 596 / 5 |
-| ET | 0,8696 | 0,8723 | +0,027 pp | 0,54 | 568 / 596 / 32 |
-| **Avg** | **0,9078** | **0,9088** | **+0,009 pp** | **0,50** | — |
+| WT | 0,9354 | 0,9360 | +0,06 pp | 0,72 | 577 / 618 / 1 |
+| TC | 0,9185 | 0,9180 | −0,05 pp | 0,27 | 595 / 596 / 5 |
+| ET | 0,8696 | 0,8723 | +0,27 pp | 0,54 | 568 / 596 / 32 |
+| **Avg** | **0,9078** | **0,9088** | **+0,09 pp** | **0,50** | — |
 
 Test de Wilcoxon signé apparié, hypothèse unilatérale DistMap $>$ Baseline. Aucune région n'atteint le seuil de significativité standard (p > 0,25 partout) ; sur WT, davantage de patients sont dégradés qu'améliorés par DistMap (618 vs 577). Le Δ = +0,09 pp de Dice avg est dans la variance de mesure.
 
@@ -333,7 +333,7 @@ L'auteur remercie **Stanislas Larnier** pour ses conseils méthodologiques, ses 
 
 ## Annexe A — Calibration de λ (loss auxiliaire SDT)
 
-À l'epoch 0 avec un réseau initialisé aléatoirement (seed 42), on mesure $|\mathcal{L}_{\mathrm{Dice+CE}}| = 0{,}57$ et $\mathcal{L}_{\mathrm{MSE}}^{\mathrm{SDT}} = 0{,}12$, ce qui donne un λ « équilibré par gradient » de 4,70.
+À l'epoch 0 avec un réseau initialisé aléatoirement (seed 42), on mesure $|\mathcal{L}_{\mathrm{Dice+CE}}| \approx 0{,}567$ et $\mathcal{L}_{\mathrm{MSE}}^{\mathrm{SDT}} \approx 0{,}121$, ce qui donne un λ « équilibré par gradient » $= 0{,}567/0{,}121 \approx 4{,}7$.
 
 Une ablation statique sur λ ∈ {0 ; 0,1 ; 0,5 ; 1 ; 2 ; 5 ; 6 ; 7 ; 8 ; 9 ; 10} (100 epochs, fold 0, seed 42) donne des Dice avg tous compris dans une fenêtre de 0,5 pp :
 

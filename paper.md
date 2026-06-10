@@ -147,10 +147,10 @@ On the 1196 patients aggregated out-of-fold from the 5-fold CV (300-epoch schedu
 
 | Region | Baseline | DistMap | ΔDice | p-value | Improved / degraded / tied |
 |---|---|---|---|---|---|
-| WT | 0.9354 | 0.9360 | +0.006 pp | 0.72 | 577 / 618 / 1 |
-| TC | 0.9185 | 0.9180 | −0.005 pp | 0.27 | 595 / 596 / 5 |
-| ET | 0.8696 | 0.8723 | +0.027 pp | 0.54 | 568 / 596 / 32 |
-| **Avg** | **0.9078** | **0.9088** | **+0.009 pp** | **0.50** | — |
+| WT | 0.9354 | 0.9360 | +0.06 pp | 0.72 | 577 / 618 / 1 |
+| TC | 0.9185 | 0.9180 | −0.05 pp | 0.27 | 595 / 596 / 5 |
+| ET | 0.8696 | 0.8723 | +0.27 pp | 0.54 | 568 / 596 / 32 |
+| **Avg** | **0.9078** | **0.9088** | **+0.09 pp** | **0.50** | — |
 
 Paired signed-rank Wilcoxon test, one-sided hypothesis DistMap $>$ Baseline. No region reaches the standard significance threshold (p > 0.25 everywhere); on WT, more patients are *degraded* than improved by DistMap (618 vs 577). The Δ = +0.09 pp Dice avg is within measurement variance.
 
@@ -333,7 +333,7 @@ The author thanks **Stanislas Larnier** for methodological guidance, feedback on
 
 ## Appendix A — Calibration of λ (auxiliary SDT loss)
 
-At epoch 0 with a random-initialised network (seed 42), we measure $|\mathcal{L}_{\mathrm{Dice+CE}}| = 0{.}57$ and $\mathcal{L}_{\mathrm{MSE}}^{\mathrm{SDT}} = 0{.}12$, yielding a "gradient-balanced" λ = 4.70.
+At epoch 0 with a random-initialised network (seed 42), we measure $|\mathcal{L}_{\mathrm{Dice+CE}}| \approx 0{.}567$ and $\mathcal{L}_{\mathrm{MSE}}^{\mathrm{SDT}} \approx 0{.}121$, yielding a "gradient-balanced" $\lambda = 0{.}567/0{.}121 \approx 4{.}7$.
 
 A static ablation over λ ∈ {0, 0.1, 0.5, 1, 2, 5, 6, 7, 8, 9, 10} (100 epochs, fold 0, seed 42) produces Dice-avg scores all within a 0.5 pp window:
 
