@@ -1,0 +1,66 @@
+{
+  "generated_at": "2026-04-21T09:34:57",
+  "source": "rankings.json",
+  "patients": [
+    {
+      "patient_id": "BraTS-GLI-00048-001",
+      "fold": "1",
+      "tag": "C1_baseline_beats_distmap",
+      "metrics": {
+        "baseline": 0.9829483333333333,
+        "distmap": 0.3075873333333333,
+        "fusion": 0.9725746666666666
+      }
+    },
+    {
+      "patient_id": "BraTS-GLI-01437-000",
+      "fold": "2",
+      "tag": "C2_distmap_beats_baseline",
+      "metrics": {
+        "baseline": 0.5891836666666667,
+        "distmap": 0.9231903333333333,
+        "fusion": 0.9231903333333333
+      }
+    },
+    {
+      "patient_id": "BraTS-GLI-01428-000",
+      "fold": "1",
+      "tag": "C3_fusion_between_B_lt_D",
+      "metrics": {
+        "baseline": 0.618345,
+        "distmap": 0.6557003333333333,
+        "fusion": 0.6454046666666667
+      }
+    },
+    {
+      "patient_id": "BraTS-GLI-00017-001",
+      "fold": "0",
+      "tag": "C4_fusion_between_D_lt_B",
+      "metrics": {
+        "baseline": 0.9906389999999999,
+        "distmap": 0.6565996666666667,
+        "fusion": 0.889598
+      }
+    },
+    {
+      "patient_id": "BraTS-GLI-01530-000",
+      "fold": "1",
+      "tag": "C5_fusion_worst",
+      "metrics": {
+        "baseline": 0.24105,
+        "distmap": 0.540674,
+        "fusion": 0.16907633333333336
+      }
+    },
+    {
+      "patient_id": "BraTS-GLI-00540-000",
+      "fold": "1",
+      "tag": "C6_fusion_best",
+      "metrics": {
+        "baseline": 0.785113,
+        "distmap": 0.7947596666666666,
+        "fusion": 0.869211
+      }
+    }
+  ]
+}

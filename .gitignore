@@ -1,0 +1,47 @@
+# Python
+__pycache__/
+*.py[cod]
+*$py.class
+*.egg-info/
+.venv/
+venv/
+env/
+
+# OS
+.DS_Store
+Thumbs.db
+
+# IDE
+.vscode/
+.idea/
+*.swp
+*.swo
+
+# Data we don't redistribute (BraTS licence + too large)
+*.nii
+*.nii.gz
+*.npz
+*.pth
+*.pt
+*.ckpt
+
+# Secrets (defense-in-depth — should not exist here anyway)
+*.env
+*.token
+token*
+*secret*
+
+# Build / cache
+*.log
+/tmp/
+build/
+dist/
+
+# Word formats : PDF is the archival source of truth (decision 2026-05-10).
+# DOCX kept locally for editing convenience but not redistributed.
+*.docx
+
+# Intermediate / temporary working dirs (Playwright screenshots, scratch downloads)
+downloads/
+figures/captures_24/
+figures/viewer_captures/

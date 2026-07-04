@@ -1,0 +1,79 @@
+=== References (Dice avg, n=1196) ===
+  Baseline only         : 0.907832
+  DistMap only          : 0.908768
+  Fusion default        : 0.908970
+  Oracle patient-level  : 0.913089  (++0.004119)
+  Oracle per-class      : 0.913909  (++0.004939)
+
+=== META-RF (31 features) (5-fold CV, per-region) ===
+  mean Dice avg         : 0.908071
+  vs fusion default     : -0.000899
+  vs oracle per-class   : -0.005838
+  argmax accuracy per region : WT=0.501, TC=0.428, ET=0.507
+  pick distribution     : WT: B=740 D=453 F=3  TC: B=800 D=251 F=145  ET: B=681 D=411 F=104
+
+=== META-LR (31 features) (5-fold CV, per-region) ===
+  mean Dice avg         : 0.908438
+  vs fusion default     : -0.000532
+  vs oracle per-class   : -0.005471
+  argmax accuracy per region : WT=0.416, TC=0.388, ET=0.439
+  pick distribution     : WT: B=457 D=512 F=227  TC: B=378 D=340 F=478  ET: B=332 D=654 F=210
+
+=== META-GBM (31 features) (5-fold CV, per-region) ===
+  mean Dice avg         : 0.908326
+  vs fusion default     : -0.000644
+  vs oracle per-class   : -0.005583
+  argmax accuracy per region : WT=0.482, TC=0.441, ET=0.494
+  pick distribution     : WT: B=664 D=525 F=7  TC: B=732 D=305 F=159  ET: B=715 D=425 F=56
+
+=== META-RF (20 morpho only) (5-fold CV, per-region) ===
+  mean Dice avg         : 0.907619
+  vs fusion default     : -0.001351
+  vs oracle per-class   : -0.006290
+  argmax accuracy per region : WT=0.487, TC=0.452, ET=0.508
+  pick distribution     : WT: B=708 D=484 F=4  TC: B=781 D=268 F=147  ET: B=766 D=402 F=28
+
+=== META-RF (11 agreement only) (5-fold CV, per-region) ===
+  mean Dice avg         : 0.908344
+  vs fusion default     : -0.000626
+  vs oracle per-class   : -0.005565
+  argmax accuracy per region : WT=0.490, TC=0.407, ET=0.496
+  pick distribution     : WT: B=698 D=486 F=12  TC: B=707 D=298 F=191  ET: B=616 D=447 F=133
+
+=== RF feature importance per region (trained on all data) ===
+
+  -- WT top 10 --
+    frac_removed_distmap_NCR         0.0545
+    nb_cc_distmap_NCR                0.0535
+    nb_cc_baseline_NCR               0.0525
+    ratio_ET_WT                      0.0509
+    n_no_overlap_distmap_NCR         0.0507
+    surface_roughness_WT             0.0424
+    vol_diff_B_D_ET                  0.0421
+    dice_B_D_ET                      0.0400
+    vol_diff_B_D_NCR                 0.0399
+    vol_WT                           0.0392
+
+  -- TC top 10 --
+    frac_removed_distmap_NCR         0.0523
+    pca_elongation_WT                0.0453
+    dice_B_D_WT                      0.0447
+    dice_B_D_ET                      0.0446
+    vol_diff_B_D_ET                  0.0444
+    vol_WT                           0.0433
+    vol_TC                           0.0421
+    sphericity_WT                    0.0415
+    dice_B_D_TC                      0.0409
+    nb_cc_baseline_NCR               0.0409
+
+  -- ET top 10 --
+    frac_removed_distmap_ET          0.1300
+    max_orphan_cc_ET                 0.0918
+    n_no_overlap_distmap_ET          0.0910
+    nb_cc_distmap_ET                 0.0375
+    vol_WT                           0.0334
+    dice_B_D_ET                      0.0324
+    dice_B_D_TC                      0.0292
+    vol_TC                           0.0291
+    vol_diff_B_D_ET                  0.0279
+    vol_ET                           0.0279

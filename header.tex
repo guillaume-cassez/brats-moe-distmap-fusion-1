@@ -1,0 +1,29 @@
+% Robust rendering of the unicode super/subscripts and math symbols used inline in the
+% Markdown (e.g. "10⁻¹⁴", "λ", "{1,2,3} ⊂ WT"). Maps them to LaTeX so the build does not
+% depend on the main font carrying every glyph (XeLaTeX + Liberation Serif drops U+207B etc.).
+\usepackage{newunicodechar}
+\newunicodechar{⁻}{\textsuperscript{\textminus}}
+\newunicodechar{⁰}{\textsuperscript{0}}
+\newunicodechar{¹}{\textsuperscript{1}}
+\newunicodechar{²}{\textsuperscript{2}}
+\newunicodechar{³}{\textsuperscript{3}}
+\newunicodechar{⁴}{\textsuperscript{4}}
+\newunicodechar{⁵}{\textsuperscript{5}}
+\newunicodechar{⁶}{\textsuperscript{6}}
+\newunicodechar{⁷}{\textsuperscript{7}}
+\newunicodechar{⁸}{\textsuperscript{8}}
+\newunicodechar{⁹}{\textsuperscript{9}}
+\newunicodechar{₀}{\textsubscript{0}}
+\newunicodechar{₁}{\textsubscript{1}}
+\newunicodechar{₂}{\textsubscript{2}}
+\newunicodechar{₃}{\textsubscript{3}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{⊂}{\ensuremath{\subset}}
+\newunicodechar{∩}{\ensuremath{\cap}}
+\newunicodechar{∪}{\ensuremath{\cup}}
+\newunicodechar{∅}{\ensuremath{\emptyset}}
+
+% Auto-fitting table for Appendix E (six demonstration patients): the last column
+% (take-away text) is set as an X column so it stretches to fill the text width and
+% stays on one line instead of wrapping, independent of EN/FR phrasing length.
+\usepackage{tabularx}

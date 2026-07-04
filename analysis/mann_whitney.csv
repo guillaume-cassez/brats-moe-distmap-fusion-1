@@ -1,0 +1,101 @@
+pair,ca,cb,feature,median_a,median_b,mean_a,mean_b,direction,p_value
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,euler_ET,-1.0,0.0,-11.242524916943522,-6.537942664418212,<,0.004399107109958915
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,nb_cc_NCR,8.0,7.0,17.813953488372093,15.06070826306914,>,0.033358371149625754
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,vol_TC,28744.5,28450.0,37982.85880398671,34459.82967959528,>,0.19295953087884188
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,sphericity_WT,0.4044425,0.398499,0.4057924900332226,0.40126862225969645,>,0.3377956769937347
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,surface_roughness_WT,2.472541,2.509419,2.578247104651163,2.6361644300168634,<,0.3377956769937347
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,pca_elongation_WT,1.7405,1.7479,1.840700996677741,1.876100168634064,<,0.40927761115775807
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,vol_ET,17354.5,17816.0,21925.116279069767,21380.453625632377,<,0.49164184794612154
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,ratio_ET_WT,0.21907549999999998,0.217282,0.24256090365448502,0.23708944350758854,>,0.5164102330789363
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,frac_small_cc_NCR,0.00234,0.002168,0.019591785714285714,0.027276957841483977,>,0.583134045085217
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,euler_WT,1.0,1.0,2.4451827242524917,1.90893760539629,=,0.5891933374960576
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,nb_cc_distmap_NCR,79.0,79.0,95.84385382059801,92.77740303541316,=,0.6075281406617314
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,nb_cc_distmap_ET,2.0,2.0,3.589700996677741,3.053962900505902,=,0.6541782005695007
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,euler_TC,1.0,1.0,2.1212624584717608,2.232715008431703,=,0.694956649766938
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,nb_cc_baseline_NCR,69.0,68.0,81.69102990033223,79.71163575042158,>,0.7032076662603565
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,vol_WT,90121.5,89333.0,97023.83720930232,94989.59696458685,>,0.7880649484519721
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,nb_cc_ET,2.0,2.0,4.335548172757475,4.0691399662731875,=,0.8215034841730072
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,nb_cc_baseline_ET,2.0,2.0,3.302325581395349,2.9747048903878586,=,0.8277934082494327
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,cc_spread_ET,0.22999999999999998,0.2331,2.7193602990033225,3.1940399662731873,<,0.8755818521052657
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,frac_small_cc_ET,2.5e-05,2.1e-05,0.0024493920265780734,0.00558758178752108,>,0.9028129029806438
+Baseline gagne vs DistMap gagne,C1_baseline_beats_distmap,C2_distmap_beats_baseline,cavities_WT,2.0,2.0,8.313953488372093,8.197301854974706,=,0.9356521362959648
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,sphericity_WT,0.412697,0.3952595,0.408668969762419,0.39765408461538454,>,0.031737755275395865
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,surface_roughness_WT,2.423088,2.529987,2.5571342462203024,2.6502648743589745,<,0.031737755275395865
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,euler_ET,-2.0,0.0,-11.174946004319654,-6.843589743589743,<,0.06905265439572308
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,nb_cc_NCR,8.0,8.0,19.367170626349893,16.402564102564103,=,0.10269434793943934
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,pca_elongation_WT,1.7329,1.77855,1.8141758099352052,1.8843751282051282,<,0.15747348298958563
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,vol_TC,31980.0,28589.0,39068.98056155507,35828.420512820514,>,0.22762723540467522
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,cavities_WT,2.0,2.0,7.870410367170626,8.271794871794873,=,0.3569187623271214
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,cc_spread_ET,0.2152,0.24655,2.486782937365011,3.2818771794871795,<,0.3912514347869248
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,euler_WT,1.0,1.0,2.4384449244060473,2.0358974358974358,=,0.40502171400568465
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,nb_cc_baseline_ET,2.0,2.0,2.980561555075594,2.805128205128205,=,0.47284037528104816
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,ratio_ET_WT,0.235112,0.237437,0.25918997840172786,0.25513633076923076,<,0.5167009793173127
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,frac_small_cc_NCR,0.002658,0.0024825,0.01928706911447084,0.02345373333333333,>,0.601644676227357
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,nb_cc_distmap_NCR,86.0,88.0,101.91360691144709,98.02820512820513,<,0.6187160187649821
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,vol_ET,19821.0,19688.5,23797.637149028076,23658.194871794873,>,0.6609062419543119
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,euler_TC,1.0,1.0,2.3304535637149026,2.4025641025641025,=,0.7638329375253992
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,nb_cc_ET,2.0,2.0,4.401727861771058,4.064102564102564,=,0.808091479931972
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,nb_cc_distmap_ET,2.0,2.0,3.14902807775378,2.917948717948718,=,0.8630862263685302
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,nb_cc_baseline_NCR,69.0,72.0,84.13390928725703,84.58974358974359,<,0.8653160333259877
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,vol_WT,91161.0,91962.0,97115.96328293736,97127.18974358974,<,0.8832335181315227
+Fusion casse vs Fusion intermédiaire (B<D),C5_fusion_worst,C3_fusion_between_B_lt_D,frac_small_cc_ET,2.5e-05,2.05e-05,0.0017031965442764576,0.0007017179487179486,>,0.9138833060969143
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,ratio_ET_WT,0.235112,0.161881,0.25918997840172786,0.20515603550295855,>,5.683973043080626e-07
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,vol_ET,19821.0,12694.0,23797.637149028076,17863.59171597633,>,3.3158339024748525e-05
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,vol_TC,31980.0,23300.0,39068.98056155507,33871.242603550294,>,0.01792990793469178
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,nb_cc_NCR,8.0,8.0,19.367170626349893,13.721893491124261,=,0.02039917358143351
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,frac_small_cc_NCR,0.002658,0.00118,0.01928706911447084,0.02483038461538462,>,0.03533362513375324
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,nb_cc_distmap_NCR,86.0,75.0,101.91360691144709,87.6094674556213,>,0.04961765935672091
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,cavities_WT,2.0,3.0,7.870410367170626,8.562130177514794,<,0.0797838444109404
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,sphericity_WT,0.412697,0.394127,0.408668969762419,0.4009669171597633,>,0.1931158648877217
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,surface_roughness_WT,2.423088,2.537256,2.5571342462203024,2.6218550710059176,<,0.1931158648877217
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,nb_cc_baseline_ET,2.0,2.0,2.980561555075594,3.905325443786982,=,0.20193451070611967
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,nb_cc_baseline_NCR,69.0,72.0,84.13390928725703,78.95266272189349,<,0.29477106591215296
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,pca_elongation_WT,1.7329,1.7264,1.8141758099352052,1.8982331360946745,>,0.30511306961038287
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,nb_cc_distmap_ET,2.0,2.0,3.14902807775378,4.491124260355029,=,0.3126808909142298
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,euler_ET,-2.0,-1.0,-11.174946004319654,-11.810650887573965,<,0.4370385686782188
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,nb_cc_ET,2.0,2.0,4.401727861771058,4.124260355029586,=,0.4722470901436293
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,euler_WT,1.0,1.0,2.4384449244060473,1.6390532544378698,=,0.4725867111231321
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,frac_small_cc_ET,2.5e-05,2.6e-05,0.0017031965442764576,0.004146644970414202,<,0.581919697736388
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,cc_spread_ET,0.2152,0.2615,2.486782937365011,2.852055029585799,<,0.7587189107534752
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,euler_TC,1.0,1.0,2.3304535637149026,1.4142011834319526,=,0.7721296026497344
+Fusion casse vs Fusion intermédiaire (D<B),C5_fusion_worst,C4_fusion_between_D_lt_B,vol_WT,91161.0,86605.0,97115.96328293736,97429.8875739645,>,0.8427613127598381
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,vol_ET,19821.0,12272.0,23797.637149028076,16167.955414012738,>,6.792481919457516e-07
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,ratio_ET_WT,0.235112,0.16443,0.25918997840172786,0.19762262420382168,>,1.015675143355712e-06
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,nb_cc_distmap_NCR,86.0,61.0,101.91360691144709,77.01273885350318,>,0.00016437425634509972
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,nb_cc_NCR,8.0,6.0,19.367170626349893,12.229299363057326,>,0.0004458589437964625
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,nb_cc_baseline_NCR,69.0,54.0,84.13390928725703,69.06369426751593,>,0.0023880026443913113
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,vol_TC,31980.0,25198.0,39068.98056155507,32328.579617834395,>,0.007803757259030916
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,euler_ET,-2.0,0.0,-11.174946004319654,-5.1847133757961785,<,0.031164838620576982
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,pca_elongation_WT,1.7329,1.7732,1.8141758099352052,1.9056477707006367,<,0.08147715007424013
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,frac_small_cc_NCR,0.002658,0.001759,0.01928706911447084,0.03623583439490445,>,0.09015339709977453
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,nb_cc_baseline_ET,2.0,2.0,2.980561555075594,3.56687898089172,=,0.11644456227461544
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,euler_TC,1.0,2.0,2.3304535637149026,2.1656050955414012,<,0.14547778454541288
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,cc_spread_ET,0.2152,0.3259,2.486782937365011,3.692614649681529,<,0.18968560782334998
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,euler_WT,1.0,1.0,2.4384449244060473,2.5923566878980893,=,0.2052406879783919
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,cavities_WT,2.0,3.0,7.870410367170626,9.095541401273886,<,0.22724942133292136
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,frac_small_cc_ET,2.5e-05,5e-05,0.0017031965442764576,0.017819324840764327,<,0.28300104002097903
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,sphericity_WT,0.412697,0.40115,0.408668969762419,0.40209221656050953,>,0.382439919335385
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,surface_roughness_WT,2.423088,2.492836,2.5571342462203024,2.6530852929936306,<,0.382439919335385
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,vol_WT,91161.0,85112.0,97115.96328293736,92102.3949044586,>,0.433218018220063
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,nb_cc_distmap_ET,2.0,2.0,3.14902807775378,3.738853503184713,=,0.7259669596109457
+Fusion casse vs Fusion synergie,C5_fusion_worst,C6_fusion_best,nb_cc_ET,2.0,2.0,4.401727861771058,4.292993630573249,=,0.890551139853684
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,vol_ET,12272.0,19688.5,16167.955414012738,23658.194871794873,<,7.418320625427699e-06
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,ratio_ET_WT,0.16443,0.237437,0.19762262420382168,0.25513633076923076,<,1.5955450854349774e-05
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,nb_cc_distmap_NCR,61.0,88.0,77.01273885350318,98.02820512820513,<,0.000468323942270768
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,nb_cc_baseline_NCR,54.0,72.0,69.06369426751593,84.58974358974359,<,0.002043562982327086
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,nb_cc_NCR,6.0,8.0,12.229299363057326,16.402564102564103,<,0.027147850913319473
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,vol_TC,25198.0,28589.0,32328.579617834395,35828.420512820514,<,0.0854478016686828
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,euler_TC,2.0,1.0,2.1656050955414012,2.4025641025641025,>,0.1222470882008341
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,frac_small_cc_ET,5e-05,2.05e-05,0.017819324840764327,0.0007017179487179486,>,0.24937400246223473
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,frac_small_cc_NCR,0.001759,0.0024825,0.03623583439490445,0.02345373333333333,<,0.25065928632994483
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,nb_cc_baseline_ET,2.0,2.0,3.56687898089172,2.805128205128205,=,0.29698384353557805
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,vol_WT,85112.0,91962.0,92102.3949044586,97127.18974358974,<,0.3655663198592345
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,euler_ET,0.0,0.0,-5.1847133757961785,-6.843589743589743,=,0.3818089703337718
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,euler_WT,1.0,1.0,2.5923566878980893,2.0358974358974358,=,0.4913905578740212
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,cc_spread_ET,0.3259,0.24655,3.692614649681529,3.2818771794871795,>,0.5164917104021151
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,pca_elongation_WT,1.7732,1.77855,1.9056477707006367,1.8843751282051282,<,0.5279006733973428
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,cavities_WT,3.0,2.0,9.095541401273886,8.271794871794873,>,0.5726525261319992
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,sphericity_WT,0.40115,0.3952595,0.40209221656050953,0.39765408461538454,>,0.6617820179894668
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,surface_roughness_WT,2.492836,2.529987,2.6530852929936306,2.6502648743589745,<,0.6617820179894668
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,nb_cc_distmap_ET,2.0,2.0,3.738853503184713,2.917948717948718,=,0.8402055371675349
+Fusion gagne vs Fusion intermédiaire (B<D),C6_fusion_best,C3_fusion_between_B_lt_D,nb_cc_ET,2.0,2.0,4.292993630573249,4.064102564102564,=,0.955191477337625

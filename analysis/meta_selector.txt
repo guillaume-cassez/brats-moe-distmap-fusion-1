@@ -1,0 +1,41 @@
+
+=== Global means (Dice avg) ===
+  Baseline only   : 0.907832
+  DistMap only    : 0.908768
+  Fusion default  : 0.908970
+  ORACLE (best/3) : 0.913089  (++0.004119 vs fusion)
+
+  Oracle argmax counts: {'F': 157, 'D': 446, 'B': 593}  (49.6% B, 37.3% D, 13.1% F)
+
+=== META-RF (5-fold CV, RandomForest) ===
+  mean Dice avg : 0.907720
+  vs fusion def : -0.001250
+  vs oracle gap : +0.005369  (remaining headroom)
+  choice counts : {np.str_('D'): 375, np.str_('B'): 755, np.str_('F'): 66}
+  argmax accuracy: 0.453
+
+=== META-LR (5-fold CV, LogisticRegression) ===
+  mean Dice avg : 0.909400
+  vs fusion def : +0.000431
+
+=== Meta-RF feature importances (trained on all data) ===
+  ratio_ET_WT                    0.0749
+  vol_TC                         0.0692
+  pca_elongation_WT              0.0687
+  nb_cc_distmap_NCR              0.0650
+  vol_ET                         0.0636
+  nb_cc_baseline_NCR             0.0629
+  vol_WT                         0.0607
+  sphericity_WT                  0.0601
+  surface_roughness_WT           0.0588
+  euler_ET                       0.0533
+  frac_small_cc_NCR              0.0525
+  euler_WT                       0.0501
+  nb_cc_NCR                      0.0450
+  cc_spread_ET                   0.0399
+  frac_small_cc_ET               0.0366
+  euler_TC                       0.0352
+  cavities_WT                    0.0347
+  nb_cc_ET                       0.0232
+  nb_cc_distmap_ET               0.0229
+  nb_cc_baseline_ET              0.0226
