@@ -1,0 +1,48 @@
+% ============================================================================
+% Table layout fixes for the more verbose FRENCH builds.
+% Auto-applied to *_fr.md by scripts/build_paper_pdf.py (in addition to the
+% Unicode fallback header). NOT applied to English builds.
+%
+% WHY: French prose is ~15% longer than English. With pandoc's natural-width
+% tables (longtable, columns "l", no wrapping), this causes two FR-only defects:
+%   (1) wide tables overflow the right margin -> the last column gets squeezed;
+%   (2) pagination shifts a small table onto a page boundary -> longtable splits
+%       it and repeats the header (looks like "two tables").
+% These tweaks compact tables horizontally (less inter-column padding, smaller
+% font) and keep short tables from breaking across pages.
+% ============================================================================
+\usepackage{etoolbox}
+\usepackage{needspace}
+% longtable defines \LTpre/\LTpost/\longtable used below. pandoc only emits
+% \usepackage{longtable} when the document actually contains a table; a _fr
+% manuscript that references its tables externally (no inline table) would then
+% hit "Undefined control sequence \LTpre" and fail. Load it here so this header
+% is self-contained. Idempotent: a no-op if pandoc already loaded longtable.
+\usepackage{longtable}
+
+% (1) horizontal compaction: less padding between columns (default 6pt)
+\setlength{\tabcolsep}{4pt}
+
+% (2) smaller font inside tables -> narrower content, shorter rows
+\AtBeginEnvironment{longtable}{\small}
+
+% (3) discourage short tables from splitting: longtable starts only if at least
+%     ~8 lines remain on the page, otherwise it moves whole to the next page.
+\setlength{\LTpre}{\medskipamount}
+\setlength{\LTpost}{\medskipamount}
+% Un \needspace EXPLICITE posé dans le .md juste avant une grande table
+% (convention papiers 1/2/3, 02/09) et ce garde-fou automatique s'EMPILAIENT :
+% deux \needspace consécutifs -> longtable démarre en haut de page suivante
+% avec son header imprimé DEUX fois (mesuré sur paper2/3 FR). Le drapeau
+% saute le garde-fou automatique quand un \needspace explicite précède déjà.
+% RECETTE (mesurée le 02/09) : si une grande table (>= ~20 lignes, surtout à
+% cellules multi-lignes) double encore son header en haut de page après un
+% \needspace unique, remplacer cette garde par \clearpage dans le .md — la
+% table part entière sur la page suivante avec UN seul header.
+\newbool{nsExplicit}
+\let\needspaceAuto\needspace
+\renewcommand{\needspace}[1]{\needspaceAuto{#1}\global\booltrue{nsExplicit}}
+\pretocmd{\longtable}{%
+  \ifbool{nsExplicit}{}{\needspaceAuto{8\baselineskip}}%
+  \global\boolfalse{nsExplicit}%
+}{}{}

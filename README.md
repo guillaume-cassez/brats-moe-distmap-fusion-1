@@ -1,7 +1,6 @@
 # brats-moe-distmap-fusion-1
 
-**Distance Map Auxiliary Loss for Brain Tumor Segmentation:
-Honest Re-evaluation under the Official BraTS-2023 Metrics — a Recall-Oriented SDT Head and a Connected-Component Consensus that Beats the Baseline**
+**Two Models That Agree Beat the Best of Them Alone: Parameter-Free Connected-Component Consensus That Beats the Baseline under the Official BraTS-2023 Metrics**
 
 *English version. Version française : [README_fr.md](README_fr.md).*
 
@@ -17,6 +16,45 @@ Code, data artefacts, and paper source for a BraTS 2023 GLI study.
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19695263.svg)](https://doi.org/10.5281/zenodo.19695263)
 
 ---
+
+## What changed in v10 (2026-09-22)
+
+1. **§4.6 provenance restored.** The multi-seed robustness tables (Table A/B) are reported
+   from the *complete, fragment-cleaned* evaluation run (n = 720 valid pairs,
+   `data/multiseed/stats.json`, md5 `fe5d513e…`) — the same numbers published since v7. A
+   work-in-progress revision had silently quoted a superseded, incomplete run
+   (n = 719/684 with ~5 % failed consensus cases, LW Dice WT 0.7815 instead of 0.8103). That
+   superseded run is **not** shipped: the archive carries only the artifacts backing the retained
+   numbers (`data/multiseed/`), and the cross-check `scripts/check_5_6_provenance.py` fails the
+   release if any of its signatures reappears (120/120 table values verified, both languages).
+2. **English/French full parity.** The EN manuscript is rebuilt from the FR revision of
+   2026-09-01 (30 sections since the 2026-09-19 plan alignment, 9 figures, same table counts), both re-titled *Two Models That
+   Agree Beat the Best of Them Alone…*.
+3. **Both authors.** Guillaume Cassez (first) and Stanislas Larnier (second) now appear on
+   the title page, `CITATION.cff` and `.zenodo.json`; the bibtex below lists both.
+4. **Demonstration patients refreshed.** C1–C6 are the six cases re-selected on 2026-08-31
+   (montages in `figures/`, table below); the five retired montages and the two superseded
+   pipeline schematics are removed.
+5. **Vocabulary corrected (2026-09-22, after an external audit of the v9 supplement).** A false
+   positive is no longer called a “hallucination” — in the generative-model literature that word
+   names a different phenomenon (a fluent output with no grounding). Both manuscripts and every
+   document of this archive now say **spurious (false-positive) connected component** /
+   *composante connexe fallacieuse (faux positif)*, and §1 states the choice explicitly. The word
+   survives only where the text rejects it. No measurement changes.
+6. **Dataset exclusions documented (2026-09-22, same audit).** §3.1 no longer presents the study
+   set as “the 1251 downloaded cases”: it is **1196**, and the **55 dropped cases are now listed
+   one by one** — trigger, git date of the triggering entry, and a re-measurement of their file
+   integrity — in `analysis/DATASET_EXCLUSIONS.md` (EN) and `analysis/DATASET_EXCLUSIONS_fr.md`
+   (FR), backed by `analysis/exclusions_1251_to_1196.csv`,
+   `analysis/exclusions_1251_to_1196.json`, `analysis/integrite_exclus_vs_temoins.csv`,
+   `analysis/integrite_exclus_vs_temoins.json`, `analysis/sonde_5_cas_exacts.json`,
+   `analysis/comparaison_3_copies.tsv` and `analysis/folds.csv`. The exclusion is a patient-level
+   precaution recorded in March 2026, upstream of every training run and every metric; no
+   file-level defect reproduces on those 55 cases today (0 unreadable, 0 NaN/Inf, 0 out-of-set
+   label, 0 divergent affine, against 55 included controls) and they are byte-identical across the
+   three surviving copies of the dataset. **No published number changes**: every result here was
+   computed on the 1196-case set.
+
 
 ## The story behind this repo
 
@@ -56,12 +94,12 @@ Six patients (C1–C6) are pinned at the top of the Patient dropdown. Each one i
 
 | Case | Patient | B | D | F | Take-away |
 |---|---|---|---|---|---|
-| C1 — B > D | 00048-001 | 0.983 | 0.308 | 0.973 | DistMap hallucinates TC/ET on an oedema-only case |
-| C2 — D > B | 01437-000 | 0.589 | 0.923 | 0.923 | DistMap rescues an under-segmenting Baseline |
-| C3 — B < F < D | 01428-000 | 0.618 | 0.656 | 0.645 | Fusion sits between, pulled baseline-side |
-| C4 — D < F < B | 00017-001 | 0.991 | 0.657 | 0.890 | Fusion rescues DistMap via consensus |
-| C5 — F < min(B,D) | 01530-000 | 0.241 | 0.541 | 0.169 | Fusion deletes a legitimate large DistMap CC |
-| C6 — F > max(B,D) | 00540-000 | 0.785 | 0.795 | 0.869 | Clean synergy |
+| C1 — D < F < B | 01435-000 | 0.924 | 0.629 | 0.924 | DistMap generates spurious TC/ET components on an oedema-only case; major veto restores Baseline |
+| C2 — F = D > B | 01094-000 | 0.643 | 0.968 | 0.968 | Dominant mode (98.9 %): the veto removes nothing, DistMap confirmed |
+| C3 — B < F < D | 01530-000 | 0.241 | 0.542 | 0.285 | Filter pulled baseline-side: the uncorroborated DistMap core is removed |
+| C4 — F = D > B | 00017-001 | 0.656 | 0.657 | 0.657 | Nothing to remove; both models miss the core (TC = 0) |
+| C5 — F > max(B,D) | 00733-001 | 0.751 | 0.805 | 0.964 | Clean synergy: the WT contour restored beyond both parents |
+| C6 — F < min(B,D) | 00388-000 | 0.923 | 0.922 | 0.921 | Break mode almost extinct in the official regime (2/1196, max gap 0.0007) |
 
 ---
 
@@ -170,11 +208,10 @@ Patient-level feature extraction (`extract_patient_features.py`, `extract_agreem
 
 ```bibtex
 @article{cassez2026ccconsensus,
-  title   = {Distance Map Auxiliary Loss for Brain Tumor Segmentation:
-             Honest Re-evaluation under the Official BraTS-2023 Metrics — a
-             Recall-Oriented SDT Head and a Connected-Component Consensus
-             that Beats the Baseline},
-  author  = {Cassez, Guillaume},
+  title   = {Two Models That Agree Beat the Best of Them Alone:
+             Parameter-Free Connected-Component Consensus That Beats the
+             Baseline under the Official BraTS-2023 Metrics},
+  author  = {Cassez, Guillaume and Larnier, Stanislas},
   journal = {arXiv preprint},
   year    = {2026},
   url     = {https://guillaume-cassez.fr/brats/paper1/},

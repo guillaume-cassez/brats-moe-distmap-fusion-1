@@ -15,7 +15,7 @@ Six patients are pinned at the top of the Patient dropdown (optgroup "★ Démo 
 | Pin | Patient | Case description |
 |---|---|---|
 | ★ | `01437-000` | C2 — DistMap rescues Baseline |
-| ★ | `00048-001` | C1 — DistMap hallucinates, Baseline dominates |
+| ★ | `00048-001` | C1 — DistMap generates spurious components, Baseline dominates |
 | ★ | `00540-000` | C6 — Fusion clean synergy |
 | ★ | `01530-000` | C5 — Fusion deletes a legitimate CC |
 | ★ | `01428-000` | C3 — Fusion baseline-side |

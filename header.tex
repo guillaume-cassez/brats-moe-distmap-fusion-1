@@ -1,8 +1,145 @@
-% Robust rendering of the unicode super/subscripts and math symbols used inline in the
-% Markdown (e.g. "10⁻¹⁴", "λ", "{1,2,3} ⊂ WT"). Maps them to LaTeX so the build does not
-% depend on the main font carrying every glyph (XeLaTeX + Liberation Serif drops U+207B etc.).
+% ============================================================================
+% Unicode -> LaTeX fallback header for xelatex/lualatex/pdflatex.
+%
+% WHY: pandoc + xelatex with a text font (e.g. Liberation Serif) SILENTLY DROPS
+% Unicode math/Greek glyphs the font lacks ("Missing character" warnings) — the
+% PDF builds without error but symbols vanish (e.g. "D∩B" renders as "DB",
+% "10⁻¹⁴" renders as "10¹⁴"). This maps the at-risk glyphs to LaTeX commands so
+% the source .md can stay in clean Unicode (good for DOCX export and readability)
+% while the PDF still renders every symbol.
+%
+% USAGE: pandoc paper.md ... --include-in-header=papers/_assets/unicode_fallback.tex
+%   (wrapped by scripts/build_paper_pdf.py, which also diagnoses missing glyphs)
+%
+% MAINTENANCE: when scripts/build_paper_pdf.py reports a still-missing glyph,
+% add one line:  \newunicodechar{<glyph>}{<latex>}  in the matching block below.
+% Latin-1 glyphs that text fonts already provide (× ± ° ÷ – — −) are intentionally
+% NOT remapped, to avoid changing their text-mode spacing/rendering.
+% ============================================================================
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{textcomp}
 \usepackage{newunicodechar}
+% needspace : permet d'exiger N lignes libres avant un bloc (tables), pour
+% interdire qu'un tableau soit coupé entre deux pages (papiers 1/2/3, 02/09).
+\usepackage{needspace}
+% array : les specs de colonnes calculées par scripts/table_layout.py utilisent
+% >{\raggedright\arraybackslash}p{…} (colonnes à largeur exacte, non justifiées
+% comme les minipages de pandoc). La préambule pandoc ne charge PAS array —
+% sans lui, « Undefined control sequence \arraybackslash » au build (mesuré le
+% 17/09 sur paper3). La sonde XeLaTeX de table_layout charge déjà array : les
+% mesures et le rendu réel partagent ainsi exactement le même contexte.
+\usepackage{array}
+
+% --- Règle du 2026-09-19 (demande Guillaume) : AUCUN titre de section seul en bas de page.
+% Valeurs MESURÉES après itérations (3 lignes : deux fuites — chaîne H2→H3 et needspace de
+% tableau après titre ; 8/5/4 : « 4. Résultats » encore orphelin en p6 du papier 3 FR, la
+% hauteur réelle d'un \section ≈ 3 lignes mange la marge de la chaîne 8→5). Marge prise :
+% section 12 ≥ subsection 7 + hauteur section 3 + 2 ; subsection 7 ≥ subsubsection 5 + 2.
+% Les \needspace de tableaux placés APRÈS un titre dans les .md ont été déplacés AVANT
+% (scripts/paper1_move_needspace.py) — la garde TeX ne peut pas deviner ce qui suit.
+% etoolbox : \pretocmd sans changer la mise en forme des titres.
+\usepackage{etoolbox}
+% \needspaceHeading fige la définition ORIGINALE de \needspace : fr_tables.tex (builds FR /
+% --compact-tables) redéfinit \needspace pour poser un drapeau global nsExplicit devant les
+% longtables — si la garde des titres passait par cette version redéfinie, elle ARMERAIT le
+% drapeau et la longtable suivante SAUTERAIT sa garde anti-coupe automatique (régression).
+\let\needspaceHeading\needspace
+\pretocmd{\section}{\needspaceHeading{12\baselineskip}}{}{}
+\pretocmd{\subsection}{\needspaceHeading{7\baselineskip}}{}{}
+\pretocmd{\subsubsection}{\needspaceHeading{4\baselineskip}}{}{}
+
+% --- set theory / logic --------------------------------------------------------
+\newunicodechar{∩}{\ensuremath{\cap}}
+\newunicodechar{∪}{\ensuremath{\cup}}
+\newunicodechar{⊂}{\ensuremath{\subset}}
+\newunicodechar{⊃}{\ensuremath{\supset}}
+\newunicodechar{⊆}{\ensuremath{\subseteq}}
+\newunicodechar{⊇}{\ensuremath{\supseteq}}
+\newunicodechar{∈}{\ensuremath{\in}}
+\newunicodechar{∉}{\ensuremath{\notin}}
+\newunicodechar{∋}{\ensuremath{\ni}}
+\newunicodechar{∅}{\ensuremath{\varnothing}}
+\newunicodechar{∖}{\ensuremath{\setminus}}
+\newunicodechar{∀}{\ensuremath{\forall}}
+\newunicodechar{∃}{\ensuremath{\exists}}
+\newunicodechar{∧}{\ensuremath{\wedge}}
+\newunicodechar{∨}{\ensuremath{\vee}}
+\newunicodechar{¬}{\ensuremath{\neg}}
+
+% --- relations -----------------------------------------------------------------
+\newunicodechar{≤}{\ensuremath{\leq}}
+\newunicodechar{≥}{\ensuremath{\geq}}
+\newunicodechar{≠}{\ensuremath{\neq}}
+\newunicodechar{≈}{\ensuremath{\approx}}
+\newunicodechar{≡}{\ensuremath{\equiv}}
+\newunicodechar{∝}{\ensuremath{\propto}}
+\newunicodechar{≪}{\ensuremath{\ll}}
+\newunicodechar{≫}{\ensuremath{\gg}}
+\newunicodechar{∼}{\ensuremath{\sim}}
+\newunicodechar{≃}{\ensuremath{\simeq}}
+
+% --- operators / analysis ------------------------------------------------------
+\newunicodechar{⋅}{\ensuremath{\cdot}}
+\newunicodechar{∘}{\ensuremath{\circ}}
+\newunicodechar{∗}{\ensuremath{\ast}}
+\newunicodechar{∞}{\ensuremath{\infty}}
+\newunicodechar{∂}{\ensuremath{\partial}}
+\newunicodechar{∇}{\ensuremath{\nabla}}
+\newunicodechar{√}{\ensuremath{\surd}}
+\newunicodechar{∑}{\ensuremath{\sum}}
+\newunicodechar{∏}{\ensuremath{\prod}}
+\newunicodechar{∫}{\ensuremath{\int}}
+
+% --- arrows --------------------------------------------------------------------
+\newunicodechar{→}{\ensuremath{\rightarrow}}
+\newunicodechar{←}{\ensuremath{\leftarrow}}
+\newunicodechar{↔}{\ensuremath{\leftrightarrow}}
+\newunicodechar{⇒}{\ensuremath{\Rightarrow}}
+\newunicodechar{⇐}{\ensuremath{\Leftarrow}}
+\newunicodechar{⇔}{\ensuremath{\Leftrightarrow}}
+\newunicodechar{↦}{\ensuremath{\mapsto}}
+
+% --- Greek lowercase -----------------------------------------------------------
+\newunicodechar{α}{\ensuremath{\alpha}}
+\newunicodechar{β}{\ensuremath{\beta}}
+\newunicodechar{γ}{\ensuremath{\gamma}}
+\newunicodechar{δ}{\ensuremath{\delta}}
+\newunicodechar{ε}{\ensuremath{\varepsilon}}
+\newunicodechar{ζ}{\ensuremath{\zeta}}
+\newunicodechar{η}{\ensuremath{\eta}}
+\newunicodechar{θ}{\ensuremath{\theta}}
+\newunicodechar{ι}{\ensuremath{\iota}}
+\newunicodechar{κ}{\ensuremath{\kappa}}
+\newunicodechar{λ}{\ensuremath{\lambda}}
+\newunicodechar{μ}{\ensuremath{\mu}}
+\newunicodechar{ν}{\ensuremath{\nu}}
+\newunicodechar{ξ}{\ensuremath{\xi}}
+\newunicodechar{π}{\ensuremath{\pi}}
+\newunicodechar{ρ}{\ensuremath{\rho}}
+\newunicodechar{σ}{\ensuremath{\sigma}}
+\newunicodechar{τ}{\ensuremath{\tau}}
+\newunicodechar{υ}{\ensuremath{\upsilon}}
+\newunicodechar{φ}{\ensuremath{\varphi}}
+\newunicodechar{χ}{\ensuremath{\chi}}
+\newunicodechar{ψ}{\ensuremath{\psi}}
+\newunicodechar{ω}{\ensuremath{\omega}}
+
+% --- Greek uppercase -----------------------------------------------------------
+\newunicodechar{Γ}{\ensuremath{\Gamma}}
+\newunicodechar{Δ}{\ensuremath{\Delta}}
+\newunicodechar{Θ}{\ensuremath{\Theta}}
+\newunicodechar{Λ}{\ensuremath{\Lambda}}
+\newunicodechar{Ξ}{\ensuremath{\Xi}}
+\newunicodechar{Π}{\ensuremath{\Pi}}
+\newunicodechar{Σ}{\ensuremath{\Sigma}}
+\newunicodechar{Φ}{\ensuremath{\Phi}}
+\newunicodechar{Ψ}{\ensuremath{\Psi}}
+\newunicodechar{Ω}{\ensuremath{\Omega}}
+
+% --- superscripts (the "10⁻⁴" case) --------------------------------------------
 \newunicodechar{⁻}{\textsuperscript{\textminus}}
+\newunicodechar{⁺}{\textsuperscript{+}}
 \newunicodechar{⁰}{\textsuperscript{0}}
 \newunicodechar{¹}{\textsuperscript{1}}
 \newunicodechar{²}{\textsuperscript{2}}
@@ -13,17 +150,15 @@
 \newunicodechar{⁷}{\textsuperscript{7}}
 \newunicodechar{⁸}{\textsuperscript{8}}
 \newunicodechar{⁹}{\textsuperscript{9}}
+
+% --- subscripts ----------------------------------------------------------------
 \newunicodechar{₀}{\textsubscript{0}}
 \newunicodechar{₁}{\textsubscript{1}}
 \newunicodechar{₂}{\textsubscript{2}}
 \newunicodechar{₃}{\textsubscript{3}}
-\newunicodechar{∈}{\ensuremath{\in}}
-\newunicodechar{⊂}{\ensuremath{\subset}}
-\newunicodechar{∩}{\ensuremath{\cap}}
-\newunicodechar{∪}{\ensuremath{\cup}}
-\newunicodechar{∅}{\ensuremath{\emptyset}}
-
-% Auto-fitting table for Appendix E (six demonstration patients): the last column
-% (take-away text) is set as an X column so it stretches to fill the text width and
-% stays on one line instead of wrapping, independent of EN/FR phrasing length.
-\usepackage{tabularx}
+\newunicodechar{₄}{\textsubscript{4}}
+\newunicodechar{₅}{\textsubscript{5}}
+\newunicodechar{₆}{\textsubscript{6}}
+\newunicodechar{₇}{\textsubscript{7}}
+\newunicodechar{₈}{\textsubscript{8}}
+\newunicodechar{₉}{\textsubscript{9}}

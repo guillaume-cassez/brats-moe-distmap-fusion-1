@@ -1,0 +1,573 @@
+{
+  "genere_le": "2026-09-22T09:06:26+00:00",
+  "script": "scripts/sonde_5_cas_exclus.py",
+  "note_source": "14-03-2026.md (audit Feature Quality du 14/03/2026)",
+  "rapport_audit_d_origine_present": false,
+  "cas": [
+    {
+      "patient_id": "BraTS-GLI-00170-000",
+      "groupe": "exclu_exact",
+      "defaut_annonce": "label seg corrompu (34359738368)",
+      "fichiers": [
+        {
+          "fichier": "BraTS-GLI-00170-000-flair.nii.gz",
+          "dtype": "float64",
+          "octets": 2510355,
+          "mtime": "2026-02-08T21:00:30",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -3.6872700452804565,
+          "max": 5.000000120693585,
+          "moyenne": -8.149022889066344e-06,
+          "ecart_type": 0.38795023053438676
+        },
+        {
+          "fichier": "BraTS-GLI-00170-000-seg.nii.gz",
+          "dtype": "float32",
+          "octets": 165977,
+          "mtime": "2026-02-08T21:00:31",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": 0.0,
+          "max": 3.0,
+          "moyenne": 0.005367047619074583,
+          "ecart_type": 0.10400518029928207,
+          "labels": [
+            0.0,
+            2.0,
+            3.0
+          ],
+          "n_labels": 3,
+          "labels_hors_jeu": [],
+          "voxels_tumeur": 23792
+        },
+        {
+          "fichier": "BraTS-GLI-00170-000-t1.nii.gz",
+          "dtype": "float64",
+          "octets": 2487686,
+          "mtime": "2026-02-08T21:00:29",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -4.131985366344452,
+          "max": 5.000000189305865,
+          "moyenne": 8.669530384449118e-06,
+          "ecart_type": 0.38795375886170763
+        },
+        {
+          "fichier": "BraTS-GLI-00170-000-t1ce.nii.gz",
+          "dtype": "float64",
+          "octets": 2228051,
+          "mtime": "2026-02-08T21:00:30",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -3.1453035473823547,
+          "max": 4.99999986711191,
+          "moyenne": -0.0022294107788128773,
+          "ecart_type": 0.32959988055498257
+        },
+        {
+          "fichier": "BraTS-GLI-00170-000-t2.nii.gz",
+          "dtype": "float64",
+          "octets": 2653942,
+          "mtime": "2026-02-08T21:00:30",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -2.251327872276306,
+          "max": 5.000000097257725,
+          "moyenne": -0.0001599741243168985,
+          "ecart_type": 0.38546359068666497
+        }
+      ]
+    },
+    {
+      "patient_id": "BraTS-GLI-00658-000",
+      "groupe": "exclu_exact",
+      "defaut_annonce": "label seg corrompu (34359738368)",
+      "fichiers": [
+        {
+          "fichier": "BraTS-GLI-00658-000-flair.nii.gz",
+          "dtype": "float64",
+          "octets": 3464166,
+          "mtime": "2026-02-08T21:01:18",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -2.5954649448394775,
+          "max": 4.047376597322,
+          "moyenne": 3.4591476087301846e-05,
+          "ecart_type": 0.4377446738728249
+        },
+        {
+          "fichier": "BraTS-GLI-00658-000-seg.nii.gz",
+          "dtype": "float32",
+          "octets": 192676,
+          "mtime": "2026-02-08T21:01:19",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": 0.0,
+          "max": 3.0,
+          "moyenne": 0.016902217641472816,
+          "ecart_type": 0.19975557923316956,
+          "labels": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ],
+          "n_labels": 4,
+          "labels_hors_jeu": [],
+          "voxels_tumeur": 71561
+        },
+        {
+          "fichier": "BraTS-GLI-00658-000-t1.nii.gz",
+          "dtype": "float64",
+          "octets": 3489392,
+          "mtime": "2026-02-08T21:01:17",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -3.2018303275108337,
+          "max": 4.241582361297333,
+          "moyenne": -2.6488696196269967e-05,
+          "ecart_type": 0.4377446837787161
+        },
+        {
+          "fichier": "BraTS-GLI-00658-000-t1ce.nii.gz",
+          "dtype": "float64",
+          "octets": 3335780,
+          "mtime": "2026-02-08T21:01:18",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -3.0619651079177856,
+          "max": 4.999999887077138,
+          "moyenne": -0.0020733693291110668,
+          "ecart_type": 0.4075332602665866
+        },
+        {
+          "fichier": "BraTS-GLI-00658-000-t2.nii.gz",
+          "dtype": "float64",
+          "octets": 3258991,
+          "mtime": "2026-02-08T21:01:18",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -2.0798569917678833,
+          "max": 5.000000091131369,
+          "moyenne": -6.262388944996049e-05,
+          "ecart_type": 0.437299393548294
+        }
+      ]
+    },
+    {
+      "patient_id": "BraTS-GLI-01433-000",
+      "groupe": "exclu_exact",
+      "defaut_annonce": "label seg corrompu (34359738368)",
+      "fichiers": [
+        {
+          "fichier": "BraTS-GLI-01433-000-flair.nii.gz",
+          "dtype": "float64",
+          "octets": 2696045,
+          "mtime": "2026-02-08T21:02:28",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -2.9332373440265656,
+          "max": 3.608227781020105,
+          "moyenne": -2.788028108518517e-05,
+          "ecart_type": 0.41999927265759146
+        },
+        {
+          "fichier": "BraTS-GLI-01433-000-seg.nii.gz",
+          "dtype": "float32",
+          "octets": 179130,
+          "mtime": "2026-02-08T21:02:29",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": 0.0,
+          "max": 2.0,
+          "moyenne": 0.013742383569478989,
+          "ecart_type": 0.16333220899105072,
+          "labels": [
+            0.0,
+            1.0,
+            2.0
+          ],
+          "n_labels": 3,
+          "labels_hors_jeu": [],
+          "voxels_tumeur": 64107
+        },
+        {
+          "fichier": "BraTS-GLI-01433-000-t1.nii.gz",
+          "dtype": "float64",
+          "octets": 2498640,
+          "mtime": "2026-02-08T21:02:27",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -3.491820275783539,
+          "max": 5.000000182437361,
+          "moyenne": 1.32495049128317e-05,
+          "ecart_type": 0.42007730801233134
+        },
+        {
+          "fichier": "BraTS-GLI-01433-000-t1ce.nii.gz",
+          "dtype": "float64",
+          "octets": 2730097,
+          "mtime": "2026-02-08T21:02:28",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -3.6913899779319763,
+          "max": 4.999999998224666,
+          "moyenne": -6.429022042655522e-05,
+          "ecart_type": 0.4190042606905686
+        },
+        {
+          "fichier": "BraTS-GLI-01433-000-t2.nii.gz",
+          "dtype": "float64",
+          "octets": 2808038,
+          "mtime": "2026-02-08T21:02:28",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -3.27500581741333,
+          "max": 4.659486337841372,
+          "moyenne": 6.329286409393107e-06,
+          "ecart_type": 0.4201457028948018
+        }
+      ]
+    },
+    {
+      "patient_id": "BraTS-GLI-00219-000",
+      "groupe": "exclu_exact",
+      "defaut_annonce": "1 voxel Inf dans T2",
+      "fichiers": [
+        {
+          "fichier": "BraTS-GLI-00219-000-flair.nii.gz",
+          "dtype": "float64",
+          "octets": 2399340,
+          "mtime": "2026-02-08T21:00:34",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -3.269229769706726,
+          "max": 4.999999823863618,
+          "moyenne": -0.00016317115708001418,
+          "ecart_type": 0.39982942029717417
+        },
+        {
+          "fichier": "BraTS-GLI-00219-000-seg.nii.gz",
+          "dtype": "float32",
+          "octets": 163666,
+          "mtime": "2026-02-08T21:00:34",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": 0.0,
+          "max": 3.0,
+          "moyenne": 0.0025794131215661764,
+          "ecart_type": 0.08283296227455139,
+          "labels": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ],
+          "n_labels": 4,
+          "labels_hors_jeu": [],
+          "voxels_tumeur": 9173
+        },
+        {
+          "fichier": "BraTS-GLI-00219-000-t1.nii.gz",
+          "dtype": "float64",
+          "octets": 2610454,
+          "mtime": "2026-02-08T21:00:33",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -3.806474193930626,
+          "max": 4.163233278617554,
+          "moyenne": 3.2320322773205504e-05,
+          "ecart_type": 0.4020567120816546
+        },
+        {
+          "fichier": "BraTS-GLI-00219-000-t1ce.nii.gz",
+          "dtype": "float64",
+          "octets": 2604732,
+          "mtime": "2026-02-08T21:00:33",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -2.962302803993225,
+          "max": 4.999999977313564,
+          "moyenne": -0.0023083807366033396,
+          "ecart_type": 0.3627592105690684
+        },
+        {
+          "fichier": "BraTS-GLI-00219-000-t2.nii.gz",
+          "dtype": "float64",
+          "octets": 2740773,
+          "mtime": "2026-02-08T21:00:34",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -2.581712007522583,
+          "max": 4.999999943502189,
+          "moyenne": -1.3215538221187978e-05,
+          "ecart_type": 0.40170856698370766
+        }
+      ]
+    },
+    {
+      "patient_id": "BraTS-GLI-01163-000",
+      "groupe": "exclu_exact",
+      "defaut_annonce": "outlier extrême (z=30-35, 4 modalités)",
+      "fichiers": [
+        {
+          "fichier": "BraTS-GLI-01163-000-flair.nii.gz",
+          "dtype": "float32",
+          "octets": 5977424,
+          "mtime": "2026-02-08T21:01:58",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -2.804657220840454,
+          "max": 5.0,
+          "moyenne": -0.0006633031880483031,
+          "ecart_type": 0.40291571617126465
+        },
+        {
+          "fichier": "BraTS-GLI-01163-000-seg.nii.gz",
+          "dtype": "float32",
+          "octets": 192230,
+          "mtime": "2026-02-08T21:01:58",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": 0.0,
+          "max": 3.0,
+          "moyenne": 0.017931228503584862,
+          "ecart_type": 0.20566080510616302,
+          "labels": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ],
+          "n_labels": 4,
+          "labels_hors_jeu": [],
+          "voxels_tumeur": 72125
+        },
+        {
+          "fichier": "BraTS-GLI-01163-000-t1.nii.gz",
+          "dtype": "float32",
+          "octets": 5912758,
+          "mtime": "2026-02-08T21:01:56",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -4.875452995300293,
+          "max": 5.0,
+          "moyenne": -1.0272875670125359e-06,
+          "ecart_type": 0.4134003221988678
+        },
+        {
+          "fichier": "BraTS-GLI-01163-000-t1ce.nii.gz",
+          "dtype": "float32",
+          "octets": 5922037,
+          "mtime": "2026-02-08T21:01:57",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -2.272569417953491,
+          "max": 5.0,
+          "moyenne": -0.0003355705994181335,
+          "ecart_type": 0.4087911546230316
+        },
+        {
+          "fichier": "BraTS-GLI-01163-000-t2.nii.gz",
+          "dtype": "float32",
+          "octets": 5934312,
+          "mtime": "2026-02-08T21:01:57",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -1.5458135604858398,
+          "max": 5.0,
+          "moyenne": -7.506696874770569e-06,
+          "ecart_type": 0.41332030296325684
+        }
+      ]
+    },
+    {
+      "patient_id": "BraTS-GLI-00000-000",
+      "groupe": "inclus_témoin",
+      "defaut_annonce": "-",
+      "fichiers": [
+        {
+          "fichier": "BraTS-GLI-00000-000-flair.nii.gz",
+          "dtype": "float64",
+          "octets": 3024284,
+          "mtime": "2026-02-08T21:00:13",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -2.7567189931869507,
+          "max": 5.000000014879333,
+          "moyenne": 1.6191060319564269e-06,
+          "ecart_type": 0.4071668955941246
+        },
+        {
+          "fichier": "BraTS-GLI-00000-000-seg.nii.gz",
+          "dtype": "float32",
+          "octets": 188680,
+          "mtime": "2026-02-08T21:00:13",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": 0.0,
+          "max": 3.0,
+          "moyenne": 0.015188507735729218,
+          "ecart_type": 0.19957269728183746,
+          "labels": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ],
+          "n_labels": 4,
+          "labels_hors_jeu": [],
+          "voxels_tumeur": 57305
+        },
+        {
+          "fichier": "BraTS-GLI-00000-000-t1.nii.gz",
+          "dtype": "float64",
+          "octets": 2784646,
+          "mtime": "2026-02-08T21:00:11",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -4.468169927597046,
+          "max": 4.999999768231646,
+          "moyenne": 3.571161520805722e-06,
+          "ecart_type": 0.4071245471381242
+        },
+        {
+          "fichier": "BraTS-GLI-00000-000-t1ce.nii.gz",
+          "dtype": "float64",
+          "octets": 2982904,
+          "mtime": "2026-02-08T21:00:12",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -2.2998416423797607,
+          "max": 4.999999953033694,
+          "moyenne": -0.002116485591138411,
+          "ecart_type": 0.3714782019014174
+        },
+        {
+          "fichier": "BraTS-GLI-00000-000-t2.nii.gz",
+          "dtype": "float64",
+          "octets": 2879712,
+          "mtime": "2026-02-08T21:00:12",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -1.8070846796035767,
+          "max": 4.999999961837602,
+          "moyenne": 2.1278882368283462e-05,
+          "ecart_type": 0.4070612645447275
+        }
+      ]
+    },
+    {
+      "patient_id": "BraTS-GLI-00002-000",
+      "groupe": "inclus_témoin",
+      "defaut_annonce": "-",
+      "fichiers": [
+        {
+          "fichier": "BraTS-GLI-00002-000-flair.nii.gz",
+          "dtype": "float64",
+          "octets": 2792494,
+          "mtime": "2026-02-08T21:00:12",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -2.5391987562179565,
+          "max": 4.99999999616557,
+          "moyenne": -1.5537650068841934e-05,
+          "ecart_type": 0.39491268194363
+        },
+        {
+          "fichier": "BraTS-GLI-00002-000-seg.nii.gz",
+          "dtype": "float32",
+          "octets": 208947,
+          "mtime": "2026-02-08T21:00:13",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": 0.0,
+          "max": 3.0,
+          "moyenne": 0.04408501461148262,
+          "ecart_type": 0.3048188388347626,
+          "labels": [
+            0.0,
+            1.0,
+            2.0,
+            3.0
+          ],
+          "n_labels": 4,
+          "labels_hors_jeu": [],
+          "voxels_tumeur": 190594
+        },
+        {
+          "fichier": "BraTS-GLI-00002-000-t1.nii.gz",
+          "dtype": "float64",
+          "octets": 2593875,
+          "mtime": "2026-02-08T21:00:11",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -4.423717588186264,
+          "max": 5.0000001186999725,
+          "moyenne": -4.259685420995057e-05,
+          "ecart_type": 0.39369016072174884
+        },
+        {
+          "fichier": "BraTS-GLI-00002-000-t1ce.nii.gz",
+          "dtype": "float64",
+          "octets": 2822910,
+          "mtime": "2026-02-08T21:00:12",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -2.374544620513916,
+          "max": 5.0000000052314135,
+          "moyenne": -0.002221389203610159,
+          "ecart_type": 0.35321589582461954
+        },
+        {
+          "fichier": "BraTS-GLI-00002-000-t2.nii.gz",
+          "dtype": "float64",
+          "octets": 2729522,
+          "mtime": "2026-02-08T21:00:12",
+          "nan": 0,
+          "inf": 0,
+          "valeur_34359738368": 0,
+          "min": -1.7193409204483032,
+          "max": 4.9367765192946536,
+          "moyenne": -2.8958054456697482e-05,
+          "ecart_type": 0.3949146809261795
+        }
+      ]
+    }
+  ]
+}

@@ -1,48 +1,79 @@
 cff-version: 1.2.0
-title: "Distance Map Auxiliary Loss for Brain Tumor Segmentation: Honest Re-evaluation under the Official BraTS-2023 Metrics — a Recall-Oriented SDT Head and a Connected-Component Consensus that Beats the Baseline"
-message: "If you use this work, please cite it as below."
-type: software
-authors:
-  - given-names: Guillaume
-    family-names: Cassez
-    email: cassez.guillaume@gmail.com
-    website: "https://guillaume-cassez.fr"
-    orcid: "https://orcid.org/0009-0007-0987-3931"
-repository-code: "https://github.com/guillaume-cassez/brats-moe-distmap-fusion-1"
-url: "https://guillaume-cassez.fr/brats/paper1/"
+message: >-
+  If you use this work, please cite its Zenodo deposit using the metadata
+  below (or the "preferred-citation" entry). The concept DOI always resolves
+  to the latest version.
+title: >-
+  Two Models That Agree Beat the Best of Them Alone: Parameter-Free Connected-Component Consensus That Beats the Baseline under the Official BraTS-2023 Metrics
+abstract: >-
+  Self-correction under the official BraTS-2023 metrics. Re-evaluated at
+  300-epoch convergence on the full 5-fold cross-validation (n = 1196) under
+  the complete official metric set. The Signed-Distance-Transform (SDT)
+  auxiliary head is null on the official lesion-wise ranking metrics
+  (Holm p = 1.0) and Dice-neutral; its only robust effect is a recall-oriented
+  shift (higher sensitivity, lower specificity, the latter showing up as
+  spurious connected components). A parameter-free connected-component
+  consensus (DistMap vetoed by a second model — baseline or the Kervadec head)
+  is the only configuration that significantly beats the baseline on the
+  official ranking metrics (lesion-wise Dice +0.024, Holm p = 4.5e-16;
+  lesion-wise HD95 -9.49 mm, Holm p = 5.7e-26), by removing ~41% of spurious
+  lesions at negligible recall cost. The archive bundles the manuscript
+  (FR + EN) and the full analysis material.
+type: dataset
+version: v10
+date-released: "2026-09-22"
+license: CC-BY-4.0
 doi: 10.5281/zenodo.19695263
-license: MIT
-date-released: "2026-04-22"
+authors:
+  - family-names: Cassez
+    given-names: Guillaume
+    affiliation: Independent researcher
+    email: cassez.guillaume@gmail.com
+    orcid: "https://orcid.org/0009-0007-0987-3931"
+  - family-names: Larnier
+    given-names: Stanislas
+    affiliation: Independent researcher
+    email: stanislaslarnier@gmail.com
+identifiers:
+  - type: doi
+    value: 10.5281/zenodo.19695263
+    description: Concept DOI (resolves to all versions)
+  - type: doi
+    value: 10.5281/zenodo.22904810
+    description: Version DOI (v10)
+repository-code: "https://github.com/guillaume-cassez/brats-moe-distmap-fusion-1"
+url: "https://guillaume-cassez.fr/imagerie-medicale/"
 keywords:
   - brain tumor segmentation
-  - BraTS
-  - nnU-Net
-  - MedNeXt
+  - BraTS 2023 GLI
+  - glioma
   - distance map
   - signed distance transform
-  - connected component consensus
-  - post-hoc filtering
-  - hard-label ensembling
-  - medical imaging
-  - deep learning
-  - ceiling analysis
-abstract: >-
-  I study the use of a Signed Distance Transform (SDT) auxiliary loss on top of
-  MedNeXt-B / nnU-Net v2 for 3D brain tumor segmentation on BraTS 2023 GLI.
-  At convergence on 1196 patients in 5-fold cross-validation, the SDT task
-  does not significantly improve Dice (Δ Dice avg = +0.09 pp, Wilcoxon
-  p > 0.25 per region) but it introduces a new failure mode — spurious
-  isolated connected components (fragments) most acute in NCR and ED. A
-  parameter-free post-hoc connected-component consensus filter (CC-consensus)
-  that drops DistMap CCs without Baseline overlap reduces NCR fragments by 66%
-  on 1196 patients (Wilcoxon p < 10^-189, topological: CC count - 1 per class)
-  at no Dice cost, and significantly improves boundary quality: HD95 drops on
-  NCR (4.86 → 4.48 mm, p=5.7e-14). The rule
-  is hard-label and parameter-free;
-  it is NOT a Mixture-of-Experts in the gating-network sense. A 1196-patient
-  5-fold ceiling analysis shows this filter is already near-saturation: the
-  oracle per-class upper bound is only +0.005 Dice above the default, and no
-  classifier trained on 31 hand-crafted features beats the default in CV.
-  Closing the gap requires voxel-level probabilistic voting or architectural
-  diversity, motivating a training-time fragment-aware loss over further
-  post-hoc engineering.
+  - auxiliary loss
+  - MedNeXt
+  - nnU-Net
+  - lesion-wise metrics
+  - connected-component consensus
+  - CC-consensus filter
+  - topological fragments
+  - HD95
+  - reproducibility
+preferred-citation:
+  type: article
+  title: >-
+    Two Models That Agree Beat the Best of Them Alone: Parameter-Free Connected-Component Consensus That Beats the Baseline under the Official BraTS-2023 Metrics
+  authors:
+    - family-names: Cassez
+      given-names: Guillaume
+      affiliation: Independent researcher
+      orcid: "https://orcid.org/0009-0007-0987-3931"
+    - family-names: Larnier
+      given-names: Stanislas
+      affiliation: Independent researcher
+  year: 2026
+  month: 7
+  doi: 10.5281/zenodo.19695263
+  notes: >-
+    Preprint, self-deposited on Zenodo under CC-BY-4.0. Companion Paper 2
+    (Kervadec boundary loss) studies the precision end of the same
+    recall–precision axis.

@@ -1,0 +1,52 @@
+{
+  "title": "Two Models That Agree Beat the Best of Them Alone: Parameter-Free Connected-Component Consensus That Beats the Baseline under the Official BraTS-2023 Metrics",
+  "upload_type": "publication",
+  "publication_type": "report",
+  "access_right": "open",
+  "license": "cc-by-4.0",
+  "language": "eng",
+  "version": "v10",
+  "publication_date": "2026-09-22",
+  "description": "Version 10 (2026-09-22) — first deposit of the v10 revision. It carries the result-first title 'Two Models That Agree Beat the Best of Them Alone: Parameter-Free Connected-Component Consensus That Beats the Baseline under the Official BraTS-2023 Metrics', both authors (Guillaume Cassez first, Stanislas Larnier second), full English/French manuscript parity (30 sections, 9 figures, identical table counts), and the multi-seed robustness tables of §4.6 reported from the complete, fragment-cleaned evaluation run (n = 720 valid pairs; data/multiseed/stats.json, md5 fe5d513e563a0bc946db983c93e8013f — the numbers published since v7), cross-checked cell by cell by scripts/check_5_6_provenance.py. Two corrections were measured on 2026-09-22 after an external audit of the v9 supplement. (1) Vocabulary: a false positive is no longer called a 'hallucination' — a term that, in the generative-model literature, names a different phenomenon — but a spurious (false-positive) connected component; §1 states the choice explicitly and the word survives only where the text rejects it. (2) Dataset provenance: the study set is 1196 of the 1251 downloaded cases, and the 55 dropped cases are listed one by one — trigger, git date of the triggering entry, file-integrity re-measurement — in analysis/DATASET_EXCLUSIONS.md (EN) and analysis/DATASET_EXCLUSIONS_fr.md (FR), with their artifacts: analysis/exclusions_1251_to_1196.csv|json, analysis/integrite_exclus_vs_temoins.csv|json (55 excluded cases vs 55 included controls: 0 unreadable file, 0 NaN/Inf, 0 out-of-set label, 0 divergent affine), analysis/sonde_5_cas_exacts.json, analysis/comparaison_3_copies.tsv (byte-identical across the three surviving copies) and analysis/folds.csv (disjoint 5-fold patient split, 240/239/239/239/239). The exclusion is a patient-level precaution recorded in March 2026, upstream of every training run and every metric; no published number changes. The archive bundles the FR + EN manuscripts (markdown and PDF, 25 and 23 pages), the 9 figures, the analysis and data artifacts, the demonstration patients C1-C6 re-selected on 2026-08-31, and build.sh, a self-contained pandoc + XeLaTeX recipe that recompiles both PDFs from the shipped sources.",
+  "notes": "Companion Paper 2 (Kervadec boundary loss) studies the precision end of the same recall–precision axis. Concept DOI 10.5281/zenodo.19695263 resolves to the latest version; this record is v10 (previous published version: v9, 2026-07-03, 10.5281/zenodo.21168405, single author and previous title).",
+  "creators": [
+    {
+      "name": "Cassez, Guillaume",
+      "affiliation": "Independent researcher",
+      "orcid": "0009-0007-0987-3931"
+    },
+    {
+      "name": "Larnier, Stanislas",
+      "affiliation": "Independent researcher"
+    }
+  ],
+  "keywords": [
+    "brain tumor segmentation",
+    "BraTS 2023 GLI",
+    "glioma",
+    "distance map",
+    "signed distance transform",
+    "auxiliary loss",
+    "MedNeXt",
+    "nnU-Net",
+    "lesion-wise metrics",
+    "connected-component consensus",
+    "CC-consensus filter",
+    "topological fragments",
+    "HD95",
+    "reproducibility",
+    "magnetic resonance imaging"
+  ],
+  "related_identifiers": [
+    {
+      "relation": "isSupplementTo",
+      "identifier": "https://github.com/guillaume-cassez/brats-moe-distmap-fusion-1",
+      "scheme": "url"
+    },
+    {
+      "relation": "isDocumentedBy",
+      "identifier": "https://guillaume-cassez.fr/imagerie-medicale/",
+      "scheme": "url"
+    }
+  ]
+}

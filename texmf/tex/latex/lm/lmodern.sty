@@ -1,0 +1,22 @@
+% ============================================================================
+% SIM lmodern.sty — shim inerte, NE PAS remplacer par le vrai fichier CTAN.
+%
+% POURQUOI (mesuré le 2026-09-01 sur le TPL) :
+% le template pandoc charge \usepackage{lmodern} quand `fontfamily` n'est pas
+% fixé. Sur cette machine le paquet Debian `lmodern` a disparu (il était
+% installé le 2026-08-11, date des derniers PDF buildés) : sudo indisponible
+% dans le bac à sable, donc pas de réinstallation système. Le VRAI lmodern.sty
+% (vérifié depuis CTAN) déclare les symbol fonts legacy OML/lmm, OMS/lmsy,
+% OMX/lmex, dont les TFM/PFB et les entrées de font map ne sont plus là non
+% plus -> « Font OML/lmm/m/it/10=lmmi10 not loadable », build xelatex exit 1.
+% Test minimal : lmodern+unicode-math échoue, unicode-math seul passe (exit 0).
+%
+% Ce shim rend \usepackage{lmodern} inerte : le rendu réel passe par
+%   - fontspec \setmainfont{Liberation Serif}   (variable pandoc mainfont),
+%   - unicode-math -> latinmodern-math.otf      (paquet fonts-lmodern, installé),
+%   - \setmonofont{Latin Modern Mono}           (ajouté par build_paper_pdf.py),
+% soit la même identité visuelle que les PDF du 2026-08-11, sans fonte legacy.
+% Visible via TEXMFHOME=papers/_assets/texmf, défini par build_paper_pdf.py.
+% ============================================================================
+\ProvidesPackage{lmodern}[2026-09-01 shim inerte: Latin Modern via OTF (fonts-lmodern + unicode-math), pas de fontes legacy]
+\endinput

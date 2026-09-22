@@ -1,0 +1,35 @@
+{
+  "genere_le": "2026-09-22T08:59:11+00:00",
+  "script": "scripts/audit_exclusions_integrity.py",
+  "seed": 42,
+  "n_exclus": 55,
+  "n_temoins": 55,
+  "exclus": {
+    "n_cas": 55,
+    "cas_incomplets": 0,
+    "cas_illisibles": 0,
+    "nan_total": 0,
+    "inf_total": 0,
+    "variance_nulle": 0,
+    "amplitude_extreme": 0,
+    "affines_divergents": 0,
+    "labels_hors_jeu": 0,
+    "formes_attendues": [
+      "(240, 240, 155)"
+    ]
+  },
+  "temoins": {
+    "n_cas": 55,
+    "cas_incomplets": 0,
+    "cas_illisibles": 0,
+    "nan_total": 0,
+    "inf_total": 0,
+    "variance_nulle": 0,
+    "amplitude_extreme": 0,
+    "affines_divergents": 0,
+    "labels_hors_jeu": 0,
+    "formes_attendues": [
+      "(240, 240, 155)"
+    ]
+  }
+}
