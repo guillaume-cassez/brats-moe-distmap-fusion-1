@@ -45,7 +45,7 @@
     },
     {
       "relation": "isDocumentedBy",
-      "identifier": "https://guillaume-cassez.fr/imagerie-medicale/",
+      "identifier": "https://guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/",
       "scheme": "url"
     }
   ]

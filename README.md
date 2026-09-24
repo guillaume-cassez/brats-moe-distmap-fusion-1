@@ -88,7 +88,7 @@ Everything is evaluated under the **complete set of official BraTS-2023 metrics*
 
 ## Interactive 3D viewer
 
-**→ [guillaume-cassez.fr/brats/](https://guillaume-cassez.fr/brats/)**
+**→ [guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/viewer/](https://guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/viewer/)**
 
 Six patients (C1–C6) are pinned at the top of the Patient dropdown. Each one illustrates a distinct ordering between Baseline / DistMap / Fusion on the Dice metric. Toggle between the models, rotate, slice, and compare against Ground Truth in one click.
 
@@ -212,9 +212,9 @@ Patient-level feature extraction (`extract_patient_features.py`, `extract_agreem
              Parameter-Free Connected-Component Consensus That Beats the
              Baseline under the Official BraTS-2023 Metrics},
   author  = {Cassez, Guillaume and Larnier, Stanislas},
-  journal = {arXiv preprint},
+  journal = {Zenodo preprint},
   year    = {2026},
-  url     = {https://guillaume-cassez.fr/brats/paper1/},
+  url     = {https://guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/},
   doi     = {10.5281/zenodo.19695263}
 }
 ```
