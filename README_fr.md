@@ -10,8 +10,8 @@ Code, artefacts de données et source du papier pour une étude BraTS 2023 GLI.
 
 [![viewer interactif](https://img.shields.io/badge/🌐_viewer_interactif-guillaume--cassez.fr-blue)](https://guillaume-cassez.fr/imagerie-medicale/viewer/)
 [![page paper](https://img.shields.io/badge/📄_page_paper-guillaume--cassez.fr-blue)](https://guillaume-cassez.fr/imagerie-medicale/)
-[![HF Baseline](https://img.shields.io/badge/🤗-MedNeXt%20Baseline-yellow)](https://huggingface.co/guillaume-cassez/mednext-baseline-brats2023gli)
-[![HF DistMap](https://img.shields.io/badge/🤗-MedNeXt%20DistMap-yellow)](https://huggingface.co/guillaume-cassez/mednext-distmap-brats2023gli)
+[![HF Baseline](https://img.shields.io/badge/💻-MedNeXt%20Baseline-yellow)](https://huggingface.co/guillaume-cassez/mednext-baseline-brats2023gli)
+[![HF DistMap](https://img.shields.io/badge/💻-MedNeXt%20DistMap-yellow)](https://huggingface.co/guillaume-cassez/mednext-distmap-brats2023gli)
 [![licence](https://img.shields.io/badge/licence-MIT-green)](LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19695263.svg)](https://doi.org/10.5281/zenodo.19695263)
 
