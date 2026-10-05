@@ -10,12 +10,119 @@ Code, artefacts de données et source du papier pour une étude BraTS 2023 GLI.
 
 [![viewer interactif](https://img.shields.io/badge/🌐_viewer_interactif-guillaume--cassez.fr-blue)](https://guillaume-cassez.fr/imagerie-medicale/viewer/)
 [![page paper](https://img.shields.io/badge/📄_page_paper-guillaume--cassez.fr-blue)](https://guillaume-cassez.fr/imagerie-medicale/)
-[![HF Baseline](https://img.shields.io/badge/🤗-MedNeXt%20Baseline-yellow)](https://huggingface.co/GuillaumeCassez/mednext-baseline-brats2023gli)
-[![HF DistMap](https://img.shields.io/badge/🤗-MedNeXt%20DistMap-yellow)](https://huggingface.co/GuillaumeCassez/mednext-distmap-brats2023gli)
+[![HF Baseline](https://img.shields.io/badge/🤗-MedNeXt%20Baseline-yellow)](https://huggingface.co/guillaume-cassez/mednext-baseline-brats2023gli)
+[![HF DistMap](https://img.shields.io/badge/🤗-MedNeXt%20DistMap-yellow)](https://huggingface.co/guillaume-cassez/mednext-distmap-brats2023gli)
 [![licence](https://img.shields.io/badge/licence-MIT-green)](LICENSE)
 [![DOI](https://zenodo.org/badge/DOI/10.5281/zenodo.19695263.svg)](https://doi.org/10.5281/zenodo.19695263)
 
 ---
+
+## Ce qui change en v12 (2026-10-05)
+
+Cette version corrige **des liens morts et une entrée bibliographique fausse**. Aucun
+résultat, aucune figure, aucun tableau, aucun nombre, aucune conclusion ne change. Le delta
+est contrôlé par machine : `check_delta_v12.py` compare cette archive à l'archive v11
+publiée (record `23163000`, zip md5 `ceba64a7…`) fichier par fichier et échoue sur tout
+écart non déclaré ci-dessous.
+
+1. **Trois chemins morts du site compagnon, mesurés à HTTP 403.** Le site est public
+   (`/imagerie-medicale/` rend 200), donc ce n'était pas un effet de bord
+   d'authentification. Chaque remplacement a été mesuré à **HTTP 200** et retrouvé dans le
+   `sitemap.xml` du site avant d'être choisi :
+
+   | Mort (403) | Vivant (200) | Où il apparaissait |
+   |---|---|---|
+   | `/brats/` | `/imagerie-medicale/brats/2023-distance-map/viewer/` | `paper.md`, `paper_fr.md`, `README.md`, `README_fr.md`, `viewer/README.md` |
+   | `/brats/paper1/` | `/imagerie-medicale/brats/2023-distance-map/` | `README.md`, `README_fr.md`, `viewer/README.md` |
+   | `/brats/ranking/` | `/imagerie-medicale/brats/2023-distance-map/ranking/` | `viewer/README.md` |
+
+   Les chemins morts atteignaient **les deux manuscrits**, donc les deux PDF, qui sont
+   reconstruits par le `build.sh` livré. Un
+   correctif partiel des deux README avait été appliqué au miroir GitHub le 2026-09-24 ;
+   comme un record Zenodo est immuable, il n'avait jamais atteint le record citable, et il
+   ne couvrait ni `viewer/README.md` ni les manuscrits. Cette version corrige toutes les
+   occurrences dans tous les fichiers de l'archive.
+2. **L'entrée bibtex ne prétend plus à un preprint arXiv.** Les deux README portaient
+   `journal = {arXiv preprint}`. Cette œuvre n'a jamais été déposée sur arXiv : une requête
+   sur l'API arXiv avec son titre exact rend **0 résultat**, et les 21 entrées rendues pour
+   `au:"Cassez"` appartiennent à un autre auteur. Quiconque recopiait ce bibtex citait un
+   preprint inexistant. L'entrée dit désormais `journal = {Zenodo preprint}`, ce que ce
+   dépôt est ; le DOI ne change pas.
+3. **Les deux fichiers citables pointent vers la même page.** `isDocumentedBy` dans
+   `.zenodo.json` et `url` dans `CITATION.cff` donnent désormais la page du papier
+   (`/imagerie-medicale/brats/2023-distance-map/`) plutôt que l'index d'imagerie médicale,
+   si bien que le record et son fichier de citation concordent.
+4. **Un contrôle des liens rejoint la batterie de publication.** Toute URL
+   `guillaume-cassez.fr` et `huggingface.co` du bundle est désormais résolue avant
+   l'écriture du zip, et tout 4xx/5xx bloque la publication. Les trois chemins morts
+   ci-dessus avaient survécu à quatre versions publiées ; la raison est qu'aucun contrôle
+   n'avait jamais demandé à une URL si elle existait.
+
+5. **La pagination est inchangée : 23 pages (EN) et 25 (FR),** et le titre, les six
+   bandeaux de révision et le bloc auteurs partagent toujours la même page. C'est la règle
+   typographique posée le 2026-09-19 et verrouillée par la batterie de publication ; une
+   première version plus longue de ce bandeau faisait basculer le bloc auteurs à la page
+   suivante et ajoutait une page à chaque PDF, et elle a été resserrée jusqu'à ce que la
+   règle tienne. Les bandeaux sont cumulatifs et ceux déjà publiés ne sont jamais réécrits —
+   ce qu'une version donnée a changé est un fait, qu'une version suivante n'a pas à
+   reformuler. `build.sh` reproduit les deux PDF embarqués depuis les sources embarquées :
+   mêmes pages, sha256 du texte extrait identique.
+
+Tout le reste de cette archive est octet pour octet identique à la v11, y compris la note
+de provenance du jeu de données corrigée en v11 (50 cas attrapés par expansion au patient,
+et non le 0 que la v10 imprimait), les 12 références Hugging Face sous l'espace de noms
+`guillaume-cassez`, les 9 figures, tous les artefacts d'analyse et
+`data/multiseed/stats.json` (md5 `fe5d513e…`).
+
+## Ce qui change en v11 (2026-10-05)
+
+Cette version est une **correction de liens et de provenance** de la v10. Aucun résultat,
+aucune figure, aucun tableau, aucune conclusion ne change. Le delta est contrôlé par
+machine : `check_delta_v11.py` compare cette archive à l'archive v10 publiée (record
+`22904810`, zip md5 `b555d816…`) fichier par fichier et échoue sur tout écart qui n'est
+pas déclaré ci-dessous — **84 fichiers, 73 octet pour octet identiques à la v10, 11
+changements déclarés**.
+
+1. **Les liens Hugging Face passent sur l'espace de noms `guillaume-cassez`.** Les deux
+   L'archive v10 portait **12 références à un espace de noms depuis retiré** — mesurées, pas
+   estimées : 4 dans `paper.md` et 4 dans `paper_fr.md` (deux fiches de modèles,
+   `mednext-baseline-…` et `mednext-distmap-…`, chacune écrite deux fois par lien markdown :
+   une fois en texte visible, une fois en cible), plus les deux liens de badge de
+   `README.md` et les deux de `README_fr.md`. Les modèles derrière ces fiches ont été migrés
+   avec leur contenu vérifié fichier par fichier, et les 12 références résolvent désormais
+   sous `huggingface.co/guillaume-cassez/`. Un verrou fail-closed de l'outillage de
+   publication, consulté avant l'écriture du zip, bloque la publication si un seul fichier
+   de cette archive pointe encore vers l'espace retiré. Cette archive satisfait en plus un
+   critère binaire plus strict : l'identifiant retiré apparaît **zéro** fois dans ses 67
+   fichiers texte, donc revérifiable par n'importe qui avec une simple recherche texte. L'identifiant retiré n'est volontairement
+   écrit **nulle part** dans cette archive : le critère de publication est binaire — zéro
+   occurrence — donc revérifiable par n'importe qui avec une simple recherche texte, sans
+   avoir à connaître les formes que le verrou tolère dans la prose.
+2. **Un nombre de la note de provenance du jeu de données est corrigé : 0 → 50.** Le
+   tableau d'`analysis/DATASET_EXCLUSIONS_fr.md` affirmait que l'exclusion au niveau patient
+   avait attrapé « **0** cas du jeu unifié (suffixe `-000`/`-001`) » — dans la ligne même
+   dont la première colonne annonçait 50 de ces exclusions, et en contradiction avec
+   `analysis/exclusions_1251_to_1196.csv`, embarqué dans la même archive (55 lignes, dont 50
+   en `entree_exacte = non`, toutes en suffixe `-000`/`-001`). La valeur vraie est **50**,
+   re-mesurée de deux façons le 2026-10-05 avec des ensembles d'identifiants identiques : un
+   scan des 1251 dossiers du jeu unifié, et la mesure embarquée. Ce 0 n'a jamais été une
+   mesure — `scripts/paper1_exclusions_provenance.py` retombait silencieusement sur un
+   compte vide quand le volume de données n'était pas monté. Il calcule désormais ce chiffre
+   *et* depuis la mesure embarquée *et* depuis le scan, refuse d'écrire quand les deux
+   divergent, et refuse d'écrire tout court quand le scan est impossible sauf à passer
+   explicitement `--sans-corroboration`. **Le jeu d'étude 1251 → 1196, les 55 cas écartés,
+   toutes les métriques et tous les tableaux du manuscrit sont inchangés.**
+3. **`header.tex` charge `booktabs` en défense** (+10 lignes de commentaires et un
+   `\usepackage`). Pandoc n'émet `\usepackage{longtable,booktabs}` que si son AST contient
+   au moins une table ; un build qui convertit toutes les tables pipe en blocs bruts
+   `{=latex}` perd donc `booktabs` du préambule et le premier `\toprule` meurt en
+   « Undefined control sequence ». L'ajout est idempotent — sans effet quand pandoc a déjà
+   chargé le paquet — et c'est ce qui permet à `build.sh` de continuer à reproduire les deux
+   PDF embarqués.
+
+Rien d'autre ne diffère de la v10 : les 73 fichiers restants sont octet pour octet
+identiques, dont toutes les figures, tous les artefacts d'analyse et
+`data/multiseed/stats.json` (md5 `fe5d513e…`).
 
 ## Ce qui change en v10 (2026-09-22)
 

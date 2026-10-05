@@ -4,6 +4,25 @@
 
 # Deux modèles qui s'accordent battent le meilleur des deux : un consensus de composantes connexes sans paramètre qui bat le baseline sous les métriques officielles BraTS-2023
 
+> **Révision éditoriale du 2026-10-05 (v12) — liens morts, entrée bibliographique fausse.**
+> Trois chemins `guillaume-cassez.fr` sous `/brats/` rendaient **403** (mesuré le 2026-10-05)
+> et résolvent désormais ; le bibtex ne cite plus un preprint arXiv inexistant. Aucun chiffre
+> ne change : voir `README_fr.md`.
+>
+> **Révision éditoriale du 2026-10-05 — liens des dépôts et un compte corrigé.**
+> Les deux fiches de modèles Hugging Face citées ici pointent désormais vers l'espace de
+> noms `guillaume-cassez` : l'espace sous lequel elles vivaient a été retiré, et ses
+> modèles ont été migrés avec leur contenu vérifié fichier à fichier. Dans la note de provenance du
+> jeu de données (`analysis/DATASET_EXCLUSIONS_fr.md`), l'exclusion au niveau patient est
+> dite avoir attrapé **50** cas du jeu unifié, là où la v10 imprimait **0**. Ce 0 n'était
+> pas une mesure : il venait d'un générateur qui retombait silencieusement sur un compte
+> vide quand le volume de données n'était pas monté, et le CSV embarqué dans cette même
+> archive listait déjà ces 50 cas (`entree_exacte = non`). Le générateur calcule désormais
+> ce chiffre *et* depuis la mesure embarquée *et* depuis un scan du jeu unifié, et refuse
+> d'écrire quand les deux divergent ou quand le scan est impossible. Aucune métrique,
+> figure, table ou conclusion de ce manuscrit ne change : le jeu d'étude 1251 → 1196, les
+> 55 cas écartés et tous les nombres publiés sont ceux de la v10.
+>
 > **Révision éditoriale du 2026-09-22 — vocabulaire et provenance du jeu de
 > données.** Nous ne qualifions plus un faux positif d'« hallucination » : dans la littérature des
 > modèles génératifs, ce mot désigne un autre phénomène, et ce qui est mesuré ici est une
@@ -116,7 +135,7 @@ Ce papier poursuit quatre objectifs :
   le HD95 (§4.3) — la seule configuration de l'étude qui batte le baseline sous les métriques
   officielles du challenge.
 * **Caractérisation empirique** de la tâche SDT auxiliaire à convergence sur MedNeXt-B / nnU-Net v2 : à 300 epochs en CV 5-fold sur 1196 patients, DistMap ne produit **pas** de gain Dice significatif (p > 0,25 par région), contrairement à l'impression tirée de comparaisons à budget d'entraînement réduit.
-* **Analyse de mode de défaillance** : identification et quantification d'un artefact sous-rapporté de la tâche SDT — la production de composantes connexes petites et isolées qui gonflent les faux positifs sans toucher significativement au Dice. Cette observation qualitative a été rendue possible par un **viewer 3D interactif compagnon** construit spécifiquement pour ce projet, qui rend côte-à-côte les meshes Baseline / DistMap / CC-Consensus pour les 1196 patients ([guillaume-cassez.fr/brats/](https://guillaume-cassez.fr/brats/)).
+* **Analyse de mode de défaillance** : identification et quantification d'un artefact sous-rapporté de la tâche SDT — la production de composantes connexes petites et isolées qui gonflent les faux positifs sans toucher significativement au Dice. Cette observation qualitative a été rendue possible par un **viewer 3D interactif compagnon** construit spécifiquement pour ce projet, qui rend côte-à-côte les meshes Baseline / DistMap / CC-Consensus pour les 1196 patients ([guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/viewer/](https://guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/viewer/)).
 * **Analyse du plafond** d'un filtre CC-consensus post-hoc qui corrige cet artefact, avec une étude sur 1196 patients délimitant ce qu'un meta-selector à base de features peut atteindre en l'absence d'accès aux softmax ou de diversité de modèles.
 
 ---
@@ -570,8 +589,8 @@ Tout le code, les 20 + 11 features pré-extraites, les scores par modèle et par
 
 Les checkpoints des modèles entraînés (5 folds de cross-validation pour chaque variante, poids au format `safetensors`, sans état d'optimiseur) sont publiés sur Hugging Face Hub :
 
-- Baseline : [huggingface.co/GuillaumeCassez/mednext-baseline-brats2023gli](https://huggingface.co/GuillaumeCassez/mednext-baseline-brats2023gli)
-- DistMap (SDT auxiliaire) : [huggingface.co/GuillaumeCassez/mednext-distmap-brats2023gli](https://huggingface.co/GuillaumeCassez/mednext-distmap-brats2023gli)
+- Baseline : [huggingface.co/guillaume-cassez/mednext-baseline-brats2023gli](https://huggingface.co/guillaume-cassez/mednext-baseline-brats2023gli)
+- DistMap (SDT auxiliaire) : [huggingface.co/guillaume-cassez/mednext-distmap-brats2023gli](https://huggingface.co/guillaume-cassez/mednext-distmap-brats2023gli)
 
 L'extraction des 31 features par patient sur les 1196 prédictions tourne en **~10 min** sur 14 threads P-cores (`taskset -c 0-13`) d'un i7-14700K ; le balayage complet de meta-classifieurs (4 familles × 5 folds × 31 dim) tourne en ~2 min sur le même hôte. **Temps d'entraînement par fold : ~13 h 30 pour 300 epochs** sur une unique RTX PRO 6000 Blackwell (96 Go), variantes Baseline et DistMap à durée équivalente (la tête de régression SDT auxiliaire ajoute < 1 % de surcoût GPU sur 300 ep).
 

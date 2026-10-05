@@ -30,6 +30,16 @@
 % 17/09 sur paper3). La sonde XeLaTeX de table_layout charge déjà array : les
 % mesures et le rendu réel partagent ainsi exactement le même contexte.
 \usepackage{array}
+% booktabs : MÊME archetype de bug que array ci-dessus, mesuré le 2026-10-04
+% sur le papier 5 — pandoc n'émet `\usepackage{longtable,booktabs}` que si son
+% AST contient au moins une table ; or la politique de paper_fix_columns
+% (2026-10-04) convertit TOUTES les tables pipe en blocs {=latex} — AST sans
+% table, préambule sans booktabs, et le premier \toprule des longtables
+% converties meurt en « Undefined control sequence » (xelatex ligne 723 du
+% .tex intermédiaire, build EN du papier 5). fr_tables.tex chargeait déjà
+% longtable en défense ; booktabs rejoint ici array, dans l'en-tête universel.
+% Idempotent : sans effet quand pandoc a déjà chargé le paquet.
+\usepackage{booktabs}
 
 % --- Règle du 2026-09-19 (demande Guillaume) : AUCUN titre de section seul en bas de page.
 % Valeurs MESURÉES après itérations (3 lignes : deux fuites — chaîne H2→H3 et needspace de

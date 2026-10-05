@@ -4,9 +4,9 @@ The companion 3D viewer is **hosted on Cloudflare Pages** and embedded directly 
 
 ## Where to use it
 
-- **Paper landing page** (recommended) : [guillaume-cassez.fr/brats/paper1/](https://guillaume-cassez.fr/brats/paper1/) — the viewer is embedded in an `<iframe>` next to the results tables.
-- **Standalone viewer** : [guillaume-cassez.fr/brats/](https://guillaume-cassez.fr/brats/) — full-screen, all 1196 patients, all four segmentations (GT / Baseline / DistMap / Fusion).
-- **Per-patient ranking table** : [guillaume-cassez.fr/brats/ranking/](https://guillaume-cassez.fr/brats/ranking/) — sort and filter the 1196 patients by Dice and HD95 of each model.
+- **Paper landing page** (recommended) : [guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/](https://guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/) — the viewer is embedded in an `<iframe>` next to the results tables.
+- **Standalone viewer** : [guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/viewer/](https://guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/viewer/) — full-screen, all 1196 patients, all four segmentations (GT / Baseline / DistMap / Fusion).
+- **Per-patient ranking table** : [guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/ranking/](https://guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/ranking/) — sort and filter the 1196 patients by Dice and HD95 of each model.
 
 ## The six demo patients (Research Report 1)
 

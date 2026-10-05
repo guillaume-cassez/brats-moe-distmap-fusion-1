@@ -1,6 +1,6 @@
 # Where the 55 exclusions come from — measured provenance (1,251 → 1,196 cases)
 
-*Generated on 2026-09-22 20:23 UTC by `scripts/paper1_exclusions_provenance.py` from the
+*Generated on 2026-10-05 13:11 UTC by `scripts/paper1_exclusions_provenance.py` from the
 artefacts of `scripts/audit_exclusions_1251_1196.py`,
 `scripts/audit_exclusions_integrity.py`, `scripts/sonde_5_cas_exclus.py` and
 `scripts/compare_3_copies_exclus.sh`. No number below is typed by hand: every figure is read
@@ -32,7 +32,7 @@ identifier** (`BraTS-GLI-xxxxx`), appears in `corrupted_patients.txt`.
 | Trigger | Cases | What it means |
 |---|---|---|
 | Exact identifier in the list | 5 | added on 2026-03-10 after `scripts/audit_feature_quality.py` (full audit of the 1,251 cases) |
-| Patient identifier in the list (patient-level expansion) | 50 | the list flagged 699 **longitudinal follow-up** acquisitions (suffix `-100` … `-109`) belonging to 272 patients; the converter drops *every* case of those patients, which is how 0 cases of the unified set (suffix `-000`/`-001`) were caught |
+| Patient identifier in the list (patient-level expansion) | 50 | the list flagged 699 **longitudinal follow-up** acquisitions (suffix `-100` … `-109`) belonging to 272 patients; the converter drops *every* case of those patients, which is how 50 cases of the unified set (suffix `-000`/`-001`) were caught |
 
 The list itself: **706 non-empty lines, 705 unique
 identifiers** (duplicate: BraTS-GLI-01163-000 (2×)). Its git history dates the entries —

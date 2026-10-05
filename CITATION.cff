@@ -20,8 +20,8 @@ abstract: >-
   lesions at negligible recall cost. The archive bundles the manuscript
   (FR + EN) and the full analysis material.
 type: dataset
-version: v10
-date-released: "2026-09-22"
+version: v12
+date-released: "2026-10-05"
 license: CC-BY-4.0
 doi: 10.5281/zenodo.19695263
 authors:
@@ -39,10 +39,10 @@ identifiers:
     value: 10.5281/zenodo.19695263
     description: Concept DOI (resolves to all versions)
   - type: doi
-    value: 10.5281/zenodo.22904810
-    description: Version DOI (v10)
+    value: 10.5281/zenodo.23164437
+    description: Version DOI (v12)
 repository-code: "https://github.com/guillaume-cassez/brats-moe-distmap-fusion-1"
-url: "https://guillaume-cassez.fr/imagerie-medicale/"
+url: "https://guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/"
 keywords:
   - brain tumor segmentation
   - BraTS 2023 GLI

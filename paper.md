@@ -4,6 +4,25 @@
 
 # Two Models That Agree Beat the Best of Them Alone: Parameter-Free Connected-Component Consensus That Beats the Baseline under the Official BraTS-2023 Metrics
 
+> **Editorial revision of 2026-10-05 (v12) — dead links, false bibliographic entry.** Three
+> `guillaume-cassez.fr` paths under `/brats/` returned **403** (measured 2026-10-05) and now
+> resolve; the bibtex no longer cites a nonexistent arXiv preprint. No number changes: see
+> `README.md`.
+>
+> **Editorial revision of 2026-10-05 — repository links and one corrected count.**
+> The two Hugging Face model cards cited here now resolve to the `guillaume-cassez`
+> namespace: the namespace they used to live under has been withdrawn, and its models were
+> migrated with their content verified file by file. In the dataset-provenance note
+> (`analysis/DATASET_EXCLUSIONS.md`), the patient-level exclusion is now stated to have
+> caught **50** cases of the unified set, where v10 printed **0**. That 0 was not a
+> measurement: it came from a generator that silently fell back to an empty count when the
+> dataset volume was not mounted, and the CSV shipped inside this very archive already
+> listed those 50 cases (`entree_exacte = non`). The generator now derives the figure from
+> the shipped measurement *and* from a scan of the unified dataset, and refuses to write
+> anything when the two disagree or when the scan is impossible. No metric, figure, table
+> or conclusion of this manuscript changes: the 1251 → 1196 study set, the 55 dropped cases
+> and every published number are those of v10.
+>
 > **Editorial revision of 2026-09-22 — vocabulary and dataset provenance.** We no
 > longer call a false positive a “hallucination”: in the generative-model literature that word
 > names a different phenomenon, and what is measured here is a **spurious connected component** — a
@@ -111,7 +130,7 @@ This paper pursues four objectives:
   the only configuration of the study that beats the baseline under the challenge's official
   metrics.
 * **Empirical characterisation** of the auxiliary SDT task at convergence on MedNeXt-B / nnU-Net v2: at 300 epochs in 5-fold CV on 1196 patients, DistMap produces **no** significant Dice gain (p > 0.25 per region), contrary to the impression drawn from comparisons at reduced training budgets.
-* **Failure-mode analysis**: identification and quantification of an under-reported artefact of the SDT task — the production of small, spatially-isolated connected components that inflate false-positive counts without materially affecting Dice. This qualitative observation was made possible by an **interactive companion 3D viewer** built specifically for this project, which renders Baseline / DistMap / CC-Consensus meshes side-by-side for all 1196 patients ([guillaume-cassez.fr/brats/](https://guillaume-cassez.fr/brats/)).
+* **Failure-mode analysis**: identification and quantification of an under-reported artefact of the SDT task — the production of small, spatially-isolated connected components that inflate false-positive counts without materially affecting Dice. This qualitative observation was made possible by an **interactive companion 3D viewer** built specifically for this project, which renders Baseline / DistMap / CC-Consensus meshes side-by-side for all 1196 patients ([guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/viewer/](https://guillaume-cassez.fr/imagerie-medicale/brats/2023-distance-map/viewer/)).
 * **Ceiling analysis** of a post-hoc CC-consensus filter that corrects this artefact, with a 1196-patient study delimiting what a feature-based meta-selector can achieve without softmax access or model diversity.
 
 ---
@@ -579,8 +598,8 @@ All code, the 20 + 11 pre-extracted features, per-patient model scores, oracle /
 
 The trained model checkpoints (5 cross-validation folds for each variant, weights as `safetensors`, no optimiser state) are released on the Hugging Face Hub :
 
-- Baseline : [huggingface.co/GuillaumeCassez/mednext-baseline-brats2023gli](https://huggingface.co/GuillaumeCassez/mednext-baseline-brats2023gli)
-- DistMap (auxiliary SDT) : [huggingface.co/GuillaumeCassez/mednext-distmap-brats2023gli](https://huggingface.co/GuillaumeCassez/mednext-distmap-brats2023gli)
+- Baseline : [huggingface.co/guillaume-cassez/mednext-baseline-brats2023gli](https://huggingface.co/guillaume-cassez/mednext-baseline-brats2023gli)
+- DistMap (auxiliary SDT) : [huggingface.co/guillaume-cassez/mednext-distmap-brats2023gli](https://huggingface.co/guillaume-cassez/mednext-distmap-brats2023gli)
 
 Per-patient extraction of the 31 features on the 1196 predictions runs in **~10 min** on 14 P-core threads (`taskset -c 0-13`) of an i7-14700K; the full meta-classifier sweep (4 families × 5 folds × 31-dim input) in ~2 min on the same host. **Training time per fold: ~13 h 30 min for 300 epochs** on a single RTX PRO 6000 Blackwell (96 GB), Baseline and DistMap variants at equivalent duration (the auxiliary SDT regression head adds < 1 % GPU overhead at 300 ep).
 

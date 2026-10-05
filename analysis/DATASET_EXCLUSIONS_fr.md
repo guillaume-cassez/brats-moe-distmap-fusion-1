@@ -1,6 +1,6 @@
 # D'où viennent les 55 exclusions — provenance mesurée (1 251 → 1 196 cas)
 
-*Généré le 2026-09-22 20:23 UTC par `scripts/paper1_exclusions_provenance.py` à partir des
+*Généré le 2026-10-05 13:11 UTC par `scripts/paper1_exclusions_provenance.py` à partir des
 artefacts de `scripts/audit_exclusions_1251_1196.py`,
 `scripts/audit_exclusions_integrity.py`, `scripts/sonde_5_cas_exclus.py` et
 `scripts/compare_3_copies_exclus.sh`. Aucun chiffre ci-dessous n'est tapé à la main : tous sont
@@ -31,7 +31,7 @@ patient** (`BraTS-GLI-xxxxx`), figure dans `corrupted_patients.txt`.
 | Déclencheur | Cas | Signification |
 |---|---|---|
 | Identifiant exact dans la liste | 5 | ajoutés le 2026-03-10 après `scripts/audit_feature_quality.py` (audit complet des 1 251 cas) |
-| Identifiant patient dans la liste (expansion au patient) | 50 | la liste signalait 699 **acquisitions de suivi longitudinal** (suffixe `-100` … `-109`) appartenant à 272 patients ; le convertisseur écarte *tous* les cas de ces patients, d'où les 0 cas du jeu unifié (suffixe `-000`/`-001`) attrapés |
+| Identifiant patient dans la liste (expansion au patient) | 50 | la liste signalait 699 **acquisitions de suivi longitudinal** (suffixe `-100` … `-109`) appartenant à 272 patients ; le convertisseur écarte *tous* les cas de ces patients, d'où les 50 cas du jeu unifié (suffixe `-000`/`-001`) attrapés |
 
 La liste elle-même : **706 lignes non vides, 705
 identifiants uniques** (doublon : BraTS-GLI-01163-000 (2×)). Son historique git date les entrées —
